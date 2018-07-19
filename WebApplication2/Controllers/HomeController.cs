@@ -26,11 +26,6 @@ namespace WebApplication2.Controllers
 
             return View();
         }
-        public ActionResult Login()
-        {
-            ViewBag.Message = "Your Login Page.";
-
-            return View();
-        }
+      
     }
 }

@@ -3342,7 +3342,9 @@ input[type="button"].btn-block {
   border-bottom: 4px solid #000000;
   content: "";
 }
-
+.LoginButton {
+    padding-right:0px;
+}
 .dropup .dropdown-menu,
 .navbar-fixed-bottom .dropdown .dropdown-menu {
   top: auto;
