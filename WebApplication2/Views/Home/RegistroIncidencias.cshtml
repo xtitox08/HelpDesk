@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "RegistroIncidencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="col_full nobottommargin">
+
+
+                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva Incidencia </font></font></h3>
+
+                <div class="input-daterange travel-date-group bottommargin-sm">
+
+                    <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+                        <div class="col_half">
+                            <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID de Incidencia:</font></font></label>
+                            <input type="text" id="register-form-nameID" disabled="disabled" name="register-form-nameID" value="" class="form-control">
+                        </div>
+
+                        <div class="col_half col_last">
+                            <label for="">Fecha de Solicitud:</label>
+                            <input type="text" value="" class="form-control tleft format" placeholder="DD/MM/YYYY">
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="col_half">
+                            <label for="register-form-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Asunto:</font></font></label>
+                            <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control">
+                        </div>
+
+                        <div class="col_half col_last">
+                            <label for="register-form-tiposolicitud"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de Solicitud:</font></font></label>
+                            <select class="form-control" id="register-form-tiposolicitud">
+                                <option>Soporte Técnico</option>
+                            </select>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="col_half">
+                            <label for="register-form-tipoIncidente"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categoría del Incidente:</font></font></label>
+                            <select class="form-control" id="register-form-tipoIncidente">
+                                <option>Hardware</option>
+                                <option>Software</option>
+                                <option>Internet/Red</option>
+                                <option>General</option>
+                            </select>
+                        </div>
+
+                        <div class="col_half col_last">
+                            <label for="register-form-priority"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prioridad:</font></font></label>
+                            <select class="form-control" id="register-form-priority">
+                                <option>Baja</option>
+                                <option>Media</option>
+                                <option>Alta</option>
+                            </select>
+                        </div>
+
+                        <div class="clear"></div>
+
+
+
+                        <div class="col_full nobottommargin">
+                            <button class="button button-3d button-green nomargin" id="register-form-submit" name="register-form-submit" value="register"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Usuario</font></font></button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+
+<!-- Date & Time Picker JS -->
+<script src="js/components/moment.js"></script>
+<script src="demos/travel/js/datepicker.js"></script>
+<script src="js/components/timepicker.js"></script>
+
+<!-- Include Date Range Picker -->
+<script src="js/components/daterangepicker.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="js/functions.js"></script>
+
+<script>
+		$(function() {
+			$('.travel-date-group .default').datepicker({
+				autoclose: true,
+				startDate: "today",
+			});
+
+			$('.travel-date-group .today').datepicker({
+				autoclose: true,
+				startDate: "today",
+				todayHighlight: true
+			});
+
+			$('.travel-date-group .past-enabled').datepicker({
+				autoclose: true,
+			});
+			$('.travel-date-group .format').datepicker({
+				autoclose: true,
+				format: "dd-mm-yyyy",
+			});
+
+			$('.travel-date-group .autoclose').datepicker();
+
+			$('.travel-date-group .disabled-week').datepicker({
+				autoclose: true,
+				daysOfWeekDisabled: "0"
+			});
+
+			$('.travel-date-group .highlighted-week').datepicker({
+				autoclose: true,
+				daysOfWeekHighlighted: "0"
+			});
+
+			$('.travel-date-group .mnth').datepicker({
+				autoclose: true,
+				minViewMode: 1,
+				format: "mm/yy"
+			});
+
+			$('.travel-date-group .multidate').datepicker({
+				multidate: true,
+				multidateSeparator: " , "
+			});
+
+			$('.travel-date-group .input-daterange').datepicker({
+				autoclose: true
+			});
+
+			$('.travel-date-group .inline-calendar').datepicker();
+
+			$('.datetimepicker').datetimepicker({
+				showClose: true
+			});
+
+			$('.datetimepicker1').datetimepicker({
+				format: 'LT',
+				showClose: true
+			});
+
+			$('.datetimepicker2').datetimepicker({
+				inline: true,
+				sideBySide: true
+			});
+
+		});
+
+		$(function() {
+			// .daterange1
+			$(".daterange1").daterangepicker({
+				"buttonClasses": "button button-rounded button-mini nomargin",
+				"applyClass": "button-color",
+				"cancelClass": "button-light"
+			});
+
+			// .daterange2
+			$(".daterange2").daterangepicker({
+				"opens": "center",
+				timePicker: true,
+				timePickerIncrement: 30,
+				locale: {
+					format: 'MM/DD/YYYY h:mm A'
+				},
+				"buttonClasses": "button button-rounded button-mini nomargin",
+				"applyClass": "button-color",
+				"cancelClass": "button-light"
+			});
+
+			// .daterange3
+			$(".daterange3").daterangepicker({
+				singleDatePicker: true,
+				showDropdowns: true
+			},
+			function(start, end, label) {
+				var years = moment().diff(start, 'years');
+				alert("You are " + years + " years old.");
+			});
+
+			// reportrange
+			function cb(start, end) {
+				$(".reportrange span").html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			}
+			cb(moment().subtract(29, 'days'), moment());
+
+			$(".reportrange").daterangepicker({
+				"buttonClasses": "button button-rounded button-mini nomargin",
+				"applyClass": "button-color",
+				"cancelClass": "button-light",
+				ranges: {
+				   'Today': [moment(), moment()],
+				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				   'This Month': [moment().startOf('month'), moment().endOf('month')],
+				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			}, cb);
+
+			// .daterange4
+			$(".daterange4").daterangepicker({
+				autoUpdateInput: false,
+				locale: {
+					cancelLabel: 'Clear'
+				},
+				"buttonClasses": "button button-rounded button-mini nomargin",
+				"applyClass": "button-color",
+				"cancelClass": "button-light"
+			});
+
+			$(".daterange4").on('apply.daterangepicker', function(ev, picker) {
+				$(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+			});
+
+			$(".daterange4").on('cancel.daterangepicker', function(ev, picker) {
+				$(this).val('');
+			});
+
+		});
+
+</script>

@@ -26,6 +26,25 @@ namespace WebApplication2.Controllers
 
             return View();
         }
-      
+        public ActionResult ListadoIncidencias()
+        {
+            ViewBag.Message = "ListadoIncidencias";
+
+            return View();
+        }
+
+        public ActionResult RegistroIncidencias()
+        {
+            ViewBag.Message = "RegistroIncidencias";
+
+            return View();
+        }
+        public ActionResult AgregarUsuario()
+        {
+            ViewBag.Message = "formulario";
+
+            return View();
+        }
+
     }
 }

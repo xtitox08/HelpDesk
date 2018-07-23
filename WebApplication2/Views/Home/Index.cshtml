@@ -2,30 +2,181 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<link rel="stylesheet" href="css/responsive.css" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<!-- Document Title
+============================================= -->
+<title>Help Desk</title>
+
+
+
+
+
+
+      
+        <!-- Page Title
+        ============================================= -->
+        <section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('../../Content/parallax.jpg'); background-size: cover; background-position: center center;" data-bottom-top="background-position:0px 400px;" data-top-bottom="background-position:0px -500px;">
+
+            <div class="container clearfix">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="nobottommargin" style="background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; border: 1px solid #999;border: 1px solid #151515;box-shadow: 0 0 20px #000;">
+                            <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+
+                                <h3 class="text-light">Login to your Account</h3>
+
+                                <div class="col_full">
+                                    <label for="login-form-username" class="text-light">Username:</label>
+                                    <input type="text" id="login-form-username" name="login-form-username" value="" class="form-control" />
+                                </div>
+
+                                <div class="col_full">
+                                    <label for="login-form-password" class="text-light">Password:</label>
+                                    <input type="password" id="login-form-password" name="login-form-password" value="" class="form-control" />
+                                </div>
+
+                                <div class="col_full nobottommargin">
+                                    <button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                                    <a href="#" class="fright">Forgot Password?</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section><!-- #page-title end -->
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+                    <div class="col_one_third">
+
+                        <div class="heading-block fancy-title nobottomborder title-bottom-border">
+                            <h4>¿Que es <span>Help Desk</span>?</h4>
+                        </div>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quidem minus id omnis, nam expedita, ea fuga commodi voluptas iusto, hic autem deleniti dolores explicabo labore enim repellat earum perspiciatis.</p>
+
+                    </div>
+
+                    <div class="col_one_third">
+
+                        <div class="heading-block fancy-title nobottomborder title-bottom-border">
+                            <h4>Registro de <span>Incidencias</span>.</h4>
+                        </div>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quidem minus id omnis, nam expedita, ea fuga commodi voluptas iusto, hic autem deleniti dolores explicabo labore enim repellat earum perspiciatis.</p>
+
+                    </div>
+
+                    <div class="col_one_third col_last">
+
+                        <div class="heading-block fancy-title nobottomborder title-bottom-border">
+                            <h4>Solicitud de <span>Servicios</span>.</h4>
+                        </div>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi quidem minus id omnis, nam expedita, ea fuga commodi voluptas iusto, hic autem deleniti dolores explicabo labore enim repellat earum perspiciatis.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="row common-height clearfix">
+
+                    <div class="col-md-5 col-padding" style="background: url('../../Content/3.jpg') center center no-repeat; background-size: cover;"></div>
+
+                    <div class="col-md-7 col-padding">
+                        <div>
+                            <div class="heading-block">
+                                <span class="before-heading color">Universidad Hispanoamericana</span>
+                                <h3>Sobre la UH</h3>
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-12">
+                                    <p>Nuestra misión es la formación de profesionales líderes y generadores de cambio que contribuyan al mejoramiento de las condiciones de vida de la sociedad costarricense y del exterior, mediante el desarrollo de la docencia, la investigación y la acción social, en el ámbito académico, humanístico, tecnológico y empresarial.</p>
+                                    <p>Somos una universidad para todos aquellos que desean cambiar al mundo con ideas, visión y liderazgo, nuestro propósito es que vos cumplás el tuyo.</p>
+                                    <a href="https://es-la.facebook.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-facebook" target="_blank">
+                                        <i class="icon-facebook"></i>
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                    <a href="https://twitter.com/universidaduh?lang=es" class="social-icon inline-block si-small si-light si-rounded si-twitter" target="_blank">
+                                        <i class="icon-twitter"></i>
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-instagram" target="_blank">
+                                        <i class="icon-instagram"></i>
+                                        <i class="icon-instagram"></i>
+                                    </a>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row common-height bottommargin-lg clearfix">
+
+                    <div class="col-md-7 col-padding" style="background-color: #F5F5F5;">
+                        <div>
+                            <div class="heading-block">
+                                <span class="before-heading color">Departamento de Tecnología de la Información</span>
+                                <h3>Soporte Técnico</h3>
+                            </div>
+
+                            <div class="row clearfix">
+
+                                <div class="col-lg-12">
+                                    <p>La función del departamento Técnico es la de proporcionar al departamento de Producción de la mayor tecnología posible para abaratar los costes de fabricación, su función es:</p>
+                                    <ul style="text-align: justify;list-style: inside;">
+                                        <li>Análisis y mejora de las herramientas de Producción</li>
+                                        <li>Análisis y mejora de las aplicaciones técnicas exteriores.</li>
+                                        <li>Estudio de nuevas inversiones que mejoren la tecnología y aprovechamiento de espacios.</li>
+                                    </ul>
+                                    <a href="mailto:imendez@uh.ac.cr" class="inline-block si-small si-light si-rounded si-email">
+                                        <i class="icon-email"></i> Enviar correo electrónico
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-padding" style="background: url('../../Content/8.jpg') center center no-repeat; background-size: cover;"></div>
+
+                </div>
+
+            </div>
+
+        </section><!-- #content end -->
+     
+
+    <!-- #wrapper end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="js/functions.js"></script>
+

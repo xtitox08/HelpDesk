@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "AgregarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+            <div class="col_full nobottommargin">
+
+
+                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ingreso Nuevo Usuario </font></font></h3>
+
+                <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+                    <div class="col_half">
+                        <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID de Usuario:</font></font></label>
+                        <input type="text" id="register-form-nameID" disabled="disabled" name="register-form-nameID" value="" class="form-control">
+                    </div>
+
+                    <div class="col_half col_last">
+                        <label for="register-form-email"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección de correo electrónico:</font></font></label>
+                        <input type="text" id="register-form-email" name="register-form-email" value="" placeholder="ejemplo@email.com" class="form-control">
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_half">
+                        <label for="register-form-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre Completo:</font></font></label>
+                        <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control">
+                    </div>
+
+                    <div class="col_half col_last">
+                        <label for="register-form-password"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elegir una contraseña:</font></font></label>
+                        <input type="password" id="register-form-password" name="register-form-password" value="" class="form-control">
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_half">
+                        <label for="register-form-sede"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elige una sede:</font></font></label>
+                        <select class="form-control" id="register-form-sede">
+                            <option>Sede Aranjuez</option>
+                            <option>Sede Llorente</option>
+                            <option>Sede Heredia</option>
+                            <option>Sede Puntarenas</option>
+                        </select>
+                    </div>
+
+                    <div class="col_half col_last">
+                        <label for="register-form-usertype"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de Usuario:</font></font></label>
+                        <select class="form-control" id="register-form-usertype">
+                            <option>Area Administrativa</option>
+                            <option>Area Técnica</option>
+                            <option>Gerencia</option>
+                            <option>Docente</option>
+                        </select>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_half">
+                        <label for="register-form-phone"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Departamento:</font></font></label>
+                        <input type="text" id="register-form-phone" name="register-form-phone" value="" class="form-control">
+                    </div>
+
+                    <div class="col_half col_last">
+                        <label for="register-form-userRights"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">El Usuario tiene permisos de:</font></font></label>
+                        <select class="form-control" id="register-form-userRights">
+                            <option>Modificación, Edición y Lectura</option>
+                            <option>Edición y Lectura</option>
+                            <option>Solo Lectura</option>
+                        </select>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="col_full nobottommargin">
+                        <button class="button button-3d button-green nomargin" id="register-form-submit" name="register-form-submit" value="register"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Usuario</font></font></button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section><!-- #content end -->
+<!-- Go To Top
+    ============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+
+<!-- Footer Scripts
+============================================= -->
+<script src="js/functions.js"></script>
