@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
@@ -45,6 +46,17 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+      
+                      
+     
+        //[HttpPost]
+        //public ActionResult AgregarUsuario(String ID,String email, String UserName,String pass,String sede, String area,String department) {
+
+
+        //    return Content(ID+email+UserName+pass+sede+area);
+
+        //}
+
 
     }
 }
