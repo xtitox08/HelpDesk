@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using MySql.Data;
 
 namespace WebApplication2.Controllers
 {
@@ -46,16 +46,38 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+
+
+
+        [HttpPost]
+        public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department)
+        {
+            String someValue;
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            string myConnectionString;
+
+            myConnectionString = "Server=helpdesk.cyeip6jtr6ck.us-east-1.rds.amazonaws.com;database=mydb;uid=HD_Master;" +
+                "pwd=wotilark123;port=3306;";
+
+         
+                conn = new MySql.Data.MySqlClient.MySqlConnection();
+                conn.ConnectionString = myConnectionString;
+                conn.Open();
+
       
-                      
-     
-        //[HttpPost]
-        //public ActionResult AgregarUsuario(String ID,String email, String UserName,String pass,String sede, String area,String department) {
+            string query = "SELECT * FROM Rol_Usuario";
+            var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+            var reader = cmd.ExecuteReader();
 
+            reader.Read();
+            
+                someValue = reader["Id_Rol"].ToString();
 
-        //    return Content(ID+email+UserName+pass+sede+area);
+                // obtiene primer valor
+            
+            return Content(ID + email + UserName + pass + sede + area+someValue);
 
-        //}
+        }
 
 
     }
