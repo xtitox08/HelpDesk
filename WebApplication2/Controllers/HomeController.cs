@@ -4,11 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MySql.Data;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+
+
+        Usuarios Usuarios = new Usuarios();
+        MySql.Data.MySqlClient.MySqlConnection conn;
+        string MyConnectionString = "";
+    
+
+    
+
         public ActionResult Index()
         {
             return View();
@@ -40,45 +50,59 @@ namespace WebApplication2.Controllers
 
             return View();
         }
+        int ID_OF_User;
         public ActionResult AgregarUsuario()
         {
-            ViewBag.Message = "formulario";
+           
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+
+            ID_OF_User = Convert.ToInt32(Usuarios.User_Data(conn));//Result of obtaining ID data
+
+            UserData_Send uds = new UserData_Send {//setting parameters of class
+
+                User_Id = ID_OF_User
+            };
+            ViewBag.Message = uds;//passing instance to view 
 
             return View();
         }
-
-
-
+        
+        
+        
         [HttpPost]
-        public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department)
+        public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department,String estado)
         {
-            String someValue;
-            MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString;
-
-            myConnectionString = "Server=helpdesk.cyeip6jtr6ck.us-east-1.rds.amazonaws.com;database=mydb;uid=HD_Master;" +
-                "pwd=wotilark123;port=3306;";
+            if (MyConnectionString.Equals(String.Empty))
+            {
+                Connection();
+            }
+            Usuarios.User_Data(conn, ID_OF_User, email,UserName,pass,sede,area,department,estado);//passing info to insert 
 
          
-                conn = new MySql.Data.MySqlClient.MySqlConnection();
-                conn.ConnectionString = myConnectionString;
-                conn.Open();
-
-      
-            string query = "SELECT * FROM Rol_Usuario";
-            var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
-            var reader = cmd.ExecuteReader();
-
-            reader.Read();
-            
-                someValue = reader["Id_Rol"].ToString();
-
-                // obtiene primer valor
-            
-            return Content(ID + email + UserName + pass + sede + area+someValue);
+            return Content(ID + email + UserName + pass + sede + area);
 
         }
 
+
+
+        //AWS connection
+        public void Connection()
+        {
+
+            //Connection String to connect aws rds DB instance
+            MyConnectionString = "Server=helpdesk.cyeip6jtr6ck.us-east-1.rds.amazonaws.com;database=mydb;uid=HD_Master;" +
+                    "pwd=wotilark123;port=3306;";
+
+            // Open connection
+            conn = new MySql.Data.MySqlClient.MySqlConnection();
+            conn.ConnectionString = MyConnectionString;
+            conn.Open();
+            
+
+        }
 
     }
 }

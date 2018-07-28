@@ -1,9 +1,12 @@
 ﻿
+@using WebApplication2.Models;
+
 @{
-    ViewBag.Title = "AgregarUsuario";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+  
 
 <section id="content">
 
@@ -16,11 +19,16 @@
 
                 <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ingreso Nuevo Usuario </font></font></h3>
 
-                <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+                <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post" runat="server">
 
                     <div class="col_half">
                         <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID de Usuario:</font></font></label>
-                        <input type="text" id="ID" disabled="disabled"  name="ID" value="2" class="form-control" >
+                        @{
+                            var data = ViewBag.Message;
+                        }
+                        
+                        <input type="text" id="ID" disabled="disabled"  name="ID" value="@data.User_Id" class="form-control" runat="server">
+                      
                     </div>
 
                     <div class="col_half col_last">
@@ -54,7 +62,7 @@
 
                     <div class="col_half col_last">
                         <label for="register-form-usertype"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de Usuario:</font></font></label>
-                        <select class="form-control" id="register-form-usertype" name="area">
+                        <select class="form-control" id="area" name="area">
                             <option>Area Administrativa</option>
                             <option>Area Técnica</option>
                             <option>Gerencia</option>
@@ -71,7 +79,7 @@
 
                     <div class="col_half col_last">
                         <label for="register-form-userRights"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">El Usuario tiene permisos de:</font></font></label>
-                        <select class="form-control" id="register-form-userRights">
+                        <select class="form-control" id="estado" name="estado">
                             <option>Modificación, Edición y Lectura</option>
                             <option>Edición y Lectura</option>
                             <option>Solo Lectura</option>
