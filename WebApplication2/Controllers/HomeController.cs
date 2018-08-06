@@ -11,32 +11,27 @@ namespace WebApplication2.Controllers
     public class HomeController : Controller
     {
 
-
+        Incidentes Incidentes = new Incidentes();
         Usuarios Usuarios = new Usuarios();
+        Mantenimientos Man = new Mantenimientos();
+        String Current_User;
         MySql.Data.MySqlClient.MySqlConnection conn;
         string MyConnectionString = "";
-    
 
-    
+
+
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
+            Current_User = "";
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         public ActionResult ListadoIncidencias()
         {
             ViewBag.Message = "ListadoIncidencias";
@@ -46,49 +41,159 @@ namespace WebApplication2.Controllers
 
         public ActionResult RegistroIncidencias()
         {
-            ViewBag.Message = "RegistroIncidencias";
+
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+           
+           Incidencia_Data result = Incidentes.Activos(conn);
+            ViewBag.Message = result;//passing instance to view 
 
             return View();
         }
         int ID_OF_User;
         public ActionResult AgregarUsuario()
         {
+
+            UserData_Send Result = ID_Recover();
+
+            ViewBag.Message = Result;//passing instance to view 
+
+            return View();
+        }
+        
+        public ActionResult Mantenimientos()
+        {
+
+            return View();
+        }
+        public ActionResult Reportes()
+        {
+
+            return View();
+        }
+
+        //Maintance options
+    
+        public ActionResult Activo()
+        {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            ViewBag.Message = Man.Id_Activo(conn);
+
+            return View();
+        }
+
+
+        public ActionResult Sede()
+        {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            ViewBag.Message = Man.Id_Sede(conn);
+
+            return View();
+
+        }
+        public ActionResult Categoria()
+        {
+
+            return View();
+        }
+        public ActionResult Departamento()
+        {
+
+            return View();
+        }
+
+        //--------------------Post methods-----------------------
+        [HttpPost]
+        public ActionResult Login(String UserName, String Password)
+        {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+         bool result =   Usuarios.Login_Verification(conn, UserName, Password);//returns wheter there is a match between user and pass or not
+
+            if (result) { Current_User = UserName; return View("Index"); }//returns index
+
+            return View();//returns login page
+
+
+        }
+
+
+
+        [HttpPost]
+        public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
+        {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            Usuarios.User_Data(conn, ID_OF_User, email, UserName, pass, sede, area, department, estado);//passing info to insert 
+
+            UserData_Send Result = ID_Recover();//metodo recupera id usuario nuevo 
+            ViewBag.Message = Result;//passing instance to view 
+
+            return View(ID_OF_User);
+
+        }
+
+
+        [HttpPost]
+        public ActionResult Activo(String ID, String Name,String Place,String Quantity)
+        {
            
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
                 Connection();//Open connection to aws method
             }
-
-            ID_OF_User = Convert.ToInt32(Usuarios.User_Data(conn));//Result of obtaining ID data
-
-            UserData_Send uds = new UserData_Send {//setting parameters of class
-
-                User_Id = ID_OF_User
-            };
-            ViewBag.Message = uds;//passing instance to view 
-
+            Man.Activo_Data(conn,ID,Name,Place,Quantity);
+            ViewBag.Message = Man.Id_Activo(conn);
             return View();
+
         }
-        
-        
-        
+
         [HttpPost]
-        public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department,String estado)
+        public ActionResult Sede(String ID, String Name, String Place)
         {
-            if (MyConnectionString.Equals(String.Empty))
-            {
-                Connection();
-            }
-            Usuarios.User_Data(conn, ID_OF_User, email,UserName,pass,sede,area,department,estado);//passing info to insert 
 
-         
-            return Content(ID + email + UserName + pass + sede + area);
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            Man.Sede_Data(conn, ID, Name, Place);
+            ViewBag.Message = Man.Id_Sede(conn);
+            return View(ID);
 
         }
 
+        [HttpPost]
+        public ActionResult RegistroIncidencias(String ID, String Cedula, String Date, String About, String Service, String Type, String Lista, String Priority)
+        {
+            return View(ID + Cedula + Date + About + Service + Type + Lista + Priority + Current_User);
+
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            Incidentes.Insert_Data(conn,ID, Cedula,  Date,  About,  Service,  Type,  Lista,  Priority, Current_User);
+            ViewBag.Message = Man.Id_Sede(conn);
+            ;
+
+        }
+        //-----------------End of post methods--------------
 
 
-        //AWS connection
+
+
+        //AWS connectiMySql.Data.MySqlClient.MySqlConnection connon
         public void Connection()
         {
 
@@ -100,7 +205,30 @@ namespace WebApplication2.Controllers
             conn = new MySql.Data.MySqlClient.MySqlConnection();
             conn.ConnectionString = MyConnectionString;
             conn.Open();
-            
+
+
+        }
+
+       
+        private UserData_Send ID_Recover() {
+            //if (MyConnectionString.Equals(String.Empty))
+            //{
+            //    Connection();
+            //}
+             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+
+            ID_OF_User = Convert.ToInt32(Usuarios.User_Data(conn));//Result of obtaining ID data
+
+            UserData_Send uds = new UserData_Send
+            {//setting parameters of class
+
+                User_Id = ID_OF_User
+            };
+           
+            return uds;
 
         }
 

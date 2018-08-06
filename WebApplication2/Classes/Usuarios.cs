@@ -20,14 +20,14 @@ namespace WebApplication2.Controllers
 
             SomeValue = reader["`Usuario`.`Id_Usuario`+1"].ToString();
             // obtiene primer valor
-
+           
 
             return SomeValue;
 
         }
-      
 
-        public void User_Data(MySql.Data.MySqlClient.MySqlConnection conn, int ID, String email, String UserName, String pass, String sede, String area, String department,String estado)
+
+        public void User_Data(MySql.Data.MySqlClient.MySqlConnection conn, int ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
         {
 
 
@@ -36,7 +36,8 @@ namespace WebApplication2.Controllers
             string Query = ""; string SecondQuery = "";
             String DB_Insert;
 
-            switch (area) {
+            switch (area)
+            {
                 case "Docente":
                     Query = "SELECT `Rol_Usuario`.`Id_Rol`FROM `mydb`.`Rol_Usuario` WHERE Tipo_Rol = 'Docente'; ";
                     break;//asignacion de query dependiendo del rol 
@@ -51,18 +52,19 @@ namespace WebApplication2.Controllers
                     break;
 
             }
-            switch (sede) {
+            switch (sede)
+            {
                 case "Sede Heredia":
-                   SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Heredia'; ";
+                    SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Heredia'; ";
                     break;//asignacion de query dependiendo del rol 
                 case "Sede Puntarenas":
-                   SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Puntarenas';  ";
+                    SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Puntarenas';  ";
                     break;
                 case "Sede Aranjuez":
-                   SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Aranjuez'; ";
+                    SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Aranjuez'; ";
                     break;
                 case "Sede Llorente":
-                   SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Llorente'; ";
+                    SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Llorente'; ";
                     break;
 
             }
@@ -70,7 +72,7 @@ namespace WebApplication2.Controllers
             var ID_CMD = new MySql.Data.MySqlClient.MySqlCommand(SecondQuery, conn);//ejecuta query 
             var Read = ID_CMD.ExecuteReader();
 
-              Read.Read();
+            Read.Read();
 
             User_HQ = Read["Id_Sede"].ToString();//ID SEDE
             Read.Close();
@@ -89,16 +91,34 @@ namespace WebApplication2.Controllers
 
             //Inserta en la base de datos
             DB_Insert = "INSERT INTO `mydb`.`Usuario` (`Id_Usuario`,`Id_Sede_Usuario`,`Id_Rol`,`Nombre_Usuario`,`Correo_Electronico`,`Contraseña`,`Estado`,`Nivel_Atencion`,`Departmento`)" +
-"VALUES("+ ID + "," + Convert.ToInt32(User_HQ) + "," + Convert.ToInt32(User_Role) + ",'" + UserName + "','" + email + "','" + pass + "','" +estado  + "','" + "Media" + "','" + department + "');";
-            
-            var Insert =  new MySql.Data.MySqlClient.MySqlCommand(DB_Insert, conn);//Insert comm
+            "VALUES(" + ID + "," + Convert.ToInt32(User_HQ) + "," + Convert.ToInt32(User_Role) + ",'" + UserName + "','" + email + "','" + pass + "','" + estado + "','" + "Media" + "','" + department + "');";
+
+            var Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Insert, conn);//Insert comm
             var executer = Insert.ExecuteNonQuery();//execute non query 
-             
-         
 
 
 
 
+
+
+        }
+
+        public bool Login_Verification(MySql.Data.MySqlClient.MySqlConnection conn,String UserName,String Password) {
+            string query = "SELECT `Usuario`.`Contraseña` FROM `mydb`.`Usuario` where Correo_Electronico = '"+UserName+"';";
+            
+            var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
+            var reader = cmd.ExecuteReader();
+
+            reader.Read();
+
+            SomeValue = reader["Contraseña"].ToString();
+            // obtiene primer valor
+
+            if (!Password.Equals(SomeValue)) {
+                return false;
+            }
+          
+            return true;
         }
     }
 }

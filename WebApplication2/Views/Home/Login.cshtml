@@ -1,10 +1,43 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LogLayout.cshtml";
 }
 
 
+<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('../../Content/parallax.jpg'); background-size: cover; background-position: center center;" data-bottom-top="background-position:0px 400px;" data-top-bottom="background-position:0px -500px;">
 
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="nobottommargin" style="background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; border: 1px solid #999;border: 1px solid #151515;box-shadow: 0 0 20px #000;">
+                    <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post" runat="server">
+
+                        <h3 class="text-light">Inicie sesión en su cuenta</h3>
+
+                        <div class="col_full">
+                            <label for="login-form-username" class="text-light">Nombre de Usuario:</label>
+                            <input type="text" id="login-form-username" name="UserName" value="" class="form-control" />
+                        </div>
+
+                        <div class="col_full">
+                            <label for="login-form-password" class="text-light">Contraseña:</label>
+                            <input type="password" id="login-form-password" name="Password" value="" class="form-control" />
+                        </div>
+
+                        <div class="col_full nobottommargin">
+                            <button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                            <a href="#" class="fright">Olvidó la contraseña?</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- #page-title end -->
 <!-- Content
 ============================================= -->
 <section id="content">

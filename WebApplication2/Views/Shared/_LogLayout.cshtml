@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Login</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -12,22 +12,20 @@
     <link href="~/Content/magnific-popup.css" rel="stylesheet" />
     <link href="~/Content/responsive.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
-    <link href="~/Content/bs-datatable.css" rel="stylesheet" />
 
     <link href="~/Content/datepicker.css" rel="stylesheet" />
     <link href="~/Content/daterangepicker.css" rel="stylesheet" />
     <link href="~/Content/timepicker.css" rel="stylesheet" />
 
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/LoginStyle.css")
-    @Scripts.Render("~/bundles/modernizr")
+
 
 
 </head>
 <body class="stretched">
 
     <!-- Header
-      ============================================= -->
+            ============================================= -->
     <header id="header" class="dark full-header">
 
         <div id="header-wrap">
@@ -44,29 +42,51 @@
                 </div><!-- #logo end -->
                 <!-- Primary Navigation
                 ============================================= -->
-                <nav id="primary-menu" class="logueado">
-                    <ul>
 
-                        <li>   @Html.ActionLink("Listado de Incidencias", "ListadoIncidencias", "Home") </li>
-                        <li>   @Html.ActionLink("Agregar Usuario", "AgregarUsuario", "Home") </li>
-                        <li>   @Html.ActionLink("Registro de Incidencias", "RegistroIncidencias", "Home") </li>
-                        <li>   @Html.ActionLink("Reportes", "Reportes", "Home") </li>
-                        <li>   @Html.ActionLink("Mantenimientos", "Mantenimientos", "Home") </li>
-                        <li>   @Html.ActionLink("Cerrar", "Login", "Home") </li>
-                    </ul>
-                </nav><!-- #primary-menu end -->
 
             </div>
 
         </div>
 
-    </header>
+    </header><!-- #header end -->
+    <!-- LOGIN FORM -->
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="https://imageog.flaticon.com/icons/png/512/17/17004.png?size=1200x630f&amp;pad=10,10,10,10&amp;ext=png&amp;bg=FFFFFFFF" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                <button type="submit" style="background-color:#4CAF50;">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
+
 
     <div class="container body-content">
         @RenderBody()
         <hr />
 
     </div>
+
+
 
 
 

@@ -1,97 +1,124 @@
-﻿
+﻿@using WebApplication2.Models;
+@using System.Collections;
 @{
     ViewBag.Title = "RegistroIncidencias";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section id="content">
-
-    <div class="content-wrap">
-
-        <div class="container clearfix">
-
-            <div class="col_full nobottommargin">
+<section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('../../Content/90.jpg'); background-size: cover; background-position: center center;" data-bottom-top="background-position:0px 400px;" data-top-bottom="background-position:0px -500px;">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="nobottommargin" style="background: rgba(0,0,0,0.7); padding: 20px; border-radius: 10px; border: 1px solid #999;border: 1px solid #151515;box-shadow: 0 0 20px #000;">
+              
 
 
-                <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva Incidencia </font></font></h3>
+                        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva Incidencia </font></font></h3>
 
-                <div class="input-daterange travel-date-group bottommargin-sm">
+                        <div class="input-daterange travel-date-group bottommargin-sm">
 
-                    <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+                            <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
 
-                        <div class="col_half">
-                            <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID de Incidencia:</font></font></label>
-                            <input type="text" id="register-form-nameID" disabled="disabled" name="register-form-nameID" value="" class="form-control">
+                                @{ 
+
+
+                                }
+                                <div class="col_half">
+                                    <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ID de Incidencia: (Auto generado)</font></font></label>
+                                    <input type="text" id="register-form-nameID" disabled="disabled" name="ID" value="" class="form-control">
+                                </div>
+
+                                <div class="col_half">
+                                    <label for="register-form-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cedula:</font></font></label>
+                                    <input type="text" id="register-form-name" name="Cedula" value="" class="form-control">
+                                </div>
+
+                                <div class="col_half col_last">
+                                    <label for="">Fecha de Solicitud:</label>
+                                    <input type="text" value="" name="Date" class="form-control tleft format" placeholder="DD/MM/YYYY">
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_half">
+                                    <label for="register-form-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Asunto:</font></font></label>
+                                    <input type="text" id="register-form-name" name="About" value="" class="form-control">
+                                </div>
+
+                                <div class="col_half col_last">
+                                    <label for="register-form-tiposolicitud"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de Solicitud:</font></font></label>
+                                    <select class="form-control" id="register-form-tiposolicitud" name="Service">
+                                        <option>Soporte Técnico</option>
+                                       
+                                    </select>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_half">
+                                    <label for="register-form-tipoIncidente"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categoría del Incidente:</font></font></label>
+                                    <select class="form-control" id="register-form-tipoIncidente" name="Type">
+                                        <option>Hardware</option>
+                                        <option>Software</option>
+                                      
+                                    </select>
+                                </div>
+
+                                <div class="col_half">
+                                    <label for="register-form-tipoIncidente"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Activo Necesitado:</font></font></label>
+                                    <select class="form-control" id="register-form-tipoIncidente" name="Lista">
+                                   @{ var result = ViewBag.Message;
+                                       }
+
+                                        @foreach (String item in result.Activos)
+                                        {
+                                        
+                                                <option value="@item" >@item</option>
+                                            }
+                                       
+
+
+                                    </select>
+                                </div>
+
+
+                                <div class="col_half col_last">
+                                    <label for="register-form-priority"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prioridad:</font></font></label>
+                                    <select class="form-control" id="register-form-priority" name="Priority">
+                                        <option>Baja</option>
+                                        <option>Media</option>
+                                        <option>Alta</option>
+                                    </select>
+                                </div>
+
+                                <div class="clear"></div>
+
+
+
+                                <div class="col_full nobottommargin">
+                                    <button class="button button-3d button-yellow nomargin" id="register-form-submit" name="register-form-submit" value="register" style="-webkit-box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);
+								-moz-box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);
+								box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);">
+                                        <font style="vertical-align: inherit; color:black;"><font style="vertical-align: inherit;">Agregar Incidencia</font></font>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="col_half col_last">
-                            <label for="">Fecha de Solicitud:</label>
-                            <input type="text" value="" class="form-control tleft format" placeholder="DD/MM/YYYY">
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <div class="col_half">
-                            <label for="register-form-name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Asunto:</font></font></label>
-                            <input type="text" id="register-form-name" name="register-form-name" value="" class="form-control">
-                        </div>
-
-                        <div class="col_half col_last">
-                            <label for="register-form-tiposolicitud"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tipo de Solicitud:</font></font></label>
-                            <select class="form-control" id="register-form-tiposolicitud">
-                                <option>Soporte Técnico</option>
-                            </select>
-                        </div>
-
-                        <div class="clear"></div>
-
-                        <div class="col_half">
-                            <label for="register-form-tipoIncidente"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categoría del Incidente:</font></font></label>
-                            <select class="form-control" id="register-form-tipoIncidente">
-                                <option>Hardware</option>
-                                <option>Software</option>
-                                <option>Internet/Red</option>
-                                <option>General</option>
-                            </select>
-                        </div>
-
-                        <div class="col_half col_last">
-                            <label for="register-form-priority"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Prioridad:</font></font></label>
-                            <select class="form-control" id="register-form-priority">
-                                <option>Baja</option>
-                                <option>Media</option>
-                                <option>Alta</option>
-                            </select>
-                        </div>
-
-                        <div class="clear"></div>
-
-
-
-                        <div class="col_full nobottommargin">
-                            <button class="button button-3d button-green nomargin" id="register-form-submit" name="register-form-submit" value="register"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Usuario</font></font></button>
-                        </div>
-
-                    </form>
-
                 </div>
-
             </div>
 
         </div>
 
-    </div>
+</section><!-- #page-title end -->
 
-</section><!-- #content end -->
-
+	
 <!-- Go To Top
 ============================================= -->
 <div id="gotoTop" class="icon-angle-up"></div>
 
 <!-- External JavaScripts
 ============================================= -->
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
+<script src="~/Content/jquery.js"></script>
+<script src="~/Content/plugins.js"></script>
 
 <!-- Date & Time Picker JS -->
 <script src="js/components/moment.js"></script>
@@ -103,144 +130,144 @@
 
 <!-- Footer Scripts
 ============================================= -->
-<script src="js/functions.js"></script>
+<script src="~/Content/functions.js"></script>
 
 <script>
-		$(function() {
-			$('.travel-date-group .default').datepicker({
-				autoclose: true,
-				startDate: "today",
-			});
+    $(function () {
+        $('.travel-date-group .default').datepicker({
+            autoclose: true,
+            startDate: "today",
+        });
 
-			$('.travel-date-group .today').datepicker({
-				autoclose: true,
-				startDate: "today",
-				todayHighlight: true
-			});
+        $('.travel-date-group .today').datepicker({
+            autoclose: true,
+            startDate: "today",
+            todayHighlight: true
+        });
 
-			$('.travel-date-group .past-enabled').datepicker({
-				autoclose: true,
-			});
-			$('.travel-date-group .format').datepicker({
-				autoclose: true,
-				format: "dd-mm-yyyy",
-			});
+        $('.travel-date-group .past-enabled').datepicker({
+            autoclose: true,
+        });
+        $('.travel-date-group .format').datepicker({
+            autoclose: true,
+            format: "dd-mm-yyyy",
+        });
 
-			$('.travel-date-group .autoclose').datepicker();
+        $('.travel-date-group .autoclose').datepicker();
 
-			$('.travel-date-group .disabled-week').datepicker({
-				autoclose: true,
-				daysOfWeekDisabled: "0"
-			});
+        $('.travel-date-group .disabled-week').datepicker({
+            autoclose: true,
+            daysOfWeekDisabled: "0"
+        });
 
-			$('.travel-date-group .highlighted-week').datepicker({
-				autoclose: true,
-				daysOfWeekHighlighted: "0"
-			});
+        $('.travel-date-group .highlighted-week').datepicker({
+            autoclose: true,
+            daysOfWeekHighlighted: "0"
+        });
 
-			$('.travel-date-group .mnth').datepicker({
-				autoclose: true,
-				minViewMode: 1,
-				format: "mm/yy"
-			});
+        $('.travel-date-group .mnth').datepicker({
+            autoclose: true,
+            minViewMode: 1,
+            format: "mm/yy"
+        });
 
-			$('.travel-date-group .multidate').datepicker({
-				multidate: true,
-				multidateSeparator: " , "
-			});
+        $('.travel-date-group .multidate').datepicker({
+            multidate: true,
+            multidateSeparator: " , "
+        });
 
-			$('.travel-date-group .input-daterange').datepicker({
-				autoclose: true
-			});
+        $('.travel-date-group .input-daterange').datepicker({
+            autoclose: true
+        });
 
-			$('.travel-date-group .inline-calendar').datepicker();
+        $('.travel-date-group .inline-calendar').datepicker();
 
-			$('.datetimepicker').datetimepicker({
-				showClose: true
-			});
+        $('.datetimepicker').datetimepicker({
+            showClose: true
+        });
 
-			$('.datetimepicker1').datetimepicker({
-				format: 'LT',
-				showClose: true
-			});
+        $('.datetimepicker1').datetimepicker({
+            format: 'LT',
+            showClose: true
+        });
 
-			$('.datetimepicker2').datetimepicker({
-				inline: true,
-				sideBySide: true
-			});
+        $('.datetimepicker2').datetimepicker({
+            inline: true,
+            sideBySide: true
+        });
 
-		});
+    });
 
-		$(function() {
-			// .daterange1
-			$(".daterange1").daterangepicker({
-				"buttonClasses": "button button-rounded button-mini nomargin",
-				"applyClass": "button-color",
-				"cancelClass": "button-light"
-			});
+    $(function () {
+        // .daterange1
+        $(".daterange1").daterangepicker({
+            "buttonClasses": "button button-rounded button-mini nomargin",
+            "applyClass": "button-color",
+            "cancelClass": "button-light"
+        });
 
-			// .daterange2
-			$(".daterange2").daterangepicker({
-				"opens": "center",
-				timePicker: true,
-				timePickerIncrement: 30,
-				locale: {
-					format: 'MM/DD/YYYY h:mm A'
-				},
-				"buttonClasses": "button button-rounded button-mini nomargin",
-				"applyClass": "button-color",
-				"cancelClass": "button-light"
-			});
+        // .daterange2
+        $(".daterange2").daterangepicker({
+            "opens": "center",
+            timePicker: true,
+            timePickerIncrement: 30,
+            locale: {
+                format: 'MM/DD/YYYY h:mm A'
+            },
+            "buttonClasses": "button button-rounded button-mini nomargin",
+            "applyClass": "button-color",
+            "cancelClass": "button-light"
+        });
 
-			// .daterange3
-			$(".daterange3").daterangepicker({
-				singleDatePicker: true,
-				showDropdowns: true
-			},
-			function(start, end, label) {
-				var years = moment().diff(start, 'years');
-				alert("You are " + years + " years old.");
-			});
+        // .daterange3
+        $(".daterange3").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true
+        },
+            function (start, end, label) {
+                var years = moment().diff(start, 'years');
+                alert("You are " + years + " years old.");
+            });
 
-			// reportrange
-			function cb(start, end) {
-				$(".reportrange span").html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-			}
-			cb(moment().subtract(29, 'days'), moment());
+        // reportrange
+        function cb(start, end) {
+            $(".reportrange span").html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+        cb(moment().subtract(29, 'days'), moment());
 
-			$(".reportrange").daterangepicker({
-				"buttonClasses": "button button-rounded button-mini nomargin",
-				"applyClass": "button-color",
-				"cancelClass": "button-light",
-				ranges: {
-				   'Today': [moment(), moment()],
-				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-				   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-				   'This Month': [moment().startOf('month'), moment().endOf('month')],
-				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-				}
-			}, cb);
+        $(".reportrange").daterangepicker({
+            "buttonClasses": "button button-rounded button-mini nomargin",
+            "applyClass": "button-color",
+            "cancelClass": "button-light",
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
 
-			// .daterange4
-			$(".daterange4").daterangepicker({
-				autoUpdateInput: false,
-				locale: {
-					cancelLabel: 'Clear'
-				},
-				"buttonClasses": "button button-rounded button-mini nomargin",
-				"applyClass": "button-color",
-				"cancelClass": "button-light"
-			});
+        // .daterange4
+        $(".daterange4").daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            },
+            "buttonClasses": "button button-rounded button-mini nomargin",
+            "applyClass": "button-color",
+            "cancelClass": "button-light"
+        });
 
-			$(".daterange4").on('apply.daterangepicker', function(ev, picker) {
-				$(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-			});
+        $(".daterange4").on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+        });
 
-			$(".daterange4").on('cancel.daterangepicker', function(ev, picker) {
-				$(this).val('');
-			});
+        $(".daterange4").on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
 
-		});
+    });
 
 </script>

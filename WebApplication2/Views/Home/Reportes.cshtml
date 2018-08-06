@@ -1,0 +1,450 @@
+﻿
+@{
+    ViewBag.Title = null;
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/dark.css" rel="stylesheet" />
+    <link href="~/Content/font-icons.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/bs-datatable.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/timepicker.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/LoginStyle.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Reportes - Help Desk</title>
+
+    <style>
+        .chart-samples ul {
+            list-style: none;
+        }
+
+        .chart-samples h4 {
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .chart-samples li {
+            font-size: 16px;
+            line-height: 2.2;
+            font-weight: 600;
+        }
+
+            .chart-samples li a:not(:hover) {
+                color: #AAA;
+            }
+    </style>
+
+</head>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+    ============================================= -->
+
+
+        <!-- Header
+        ============================================= -->
+        <header id="header" class="dark full-header">
+
+            <div id="header-wrap">
+
+                <div class="container clearfix">
+
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="index.html" class="standard-logo"><img src="~/Content/logo.png" alt="Help Desk Logo"></a>
+                    </div><!-- #logo end -->
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu" class="logueado">
+                        <ul>
+                            <li><a href="ListadoIncidencias"><div>Listado de Incidencia</div></a></li>
+                            <li><a href="RegistroIncidencias"><div>Registro de Incidencias</div></a></li>
+                            <li><a href="AgregarUsuario"><div>Agregar Usuario</div></a></li>
+                            <li><a href="Reportes"><div>Reportes</div></a></li>
+                            <li><a href="Mantenimientos"><div>Mantenimiento</div></a></li>
+                            <li><a href="Login"><div>Cerrar</div></a></li>
+                        </ul>
+                    </nav><!-- #primary-menu end -->
+
+                </div>
+
+            </div>
+
+        </header><!-- #header end -->
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+
+                    <div class="table-responsive">
+                        <table id="datatable1" class="table table-striped table-bordered table-dark" cellspacing="0" width="100%">
+                            <thead>
+                                <tr style="color:#20c997">
+                                    <th>Codigo</th>
+                                    <th>Asunto</th>
+                                    <th>Fecha Ingreso</th>
+                                    <th>Fecha Asignación</th>
+                                    <th>Fecha Finalización</th>
+                                    <th>Hora Asignación</th>
+                                    <th>Hora Finalizacion</th>
+                                    <th>Técnico</th>
+                                    <th>Usuario</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Codigo</th>
+                                    <th>Asunto</th>
+                                    <th>Fecha Ingreso</th>
+                                    <th>Fecha Asignación</th>
+                                    <th>Fecha Finalización</th>
+                                    <th>Hora Asignación</th>
+                                    <th>Hora Finalizacion</th>
+                                    <th>Técnico</th>
+                                    <th>Usuario</th>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td>No sirve el internet</td>
+                                    <td>7/30/2018</td>
+                                    <td>8/30/2018</td>
+                                    <td>8/30/2018</td>
+                                    <td>3:41 PM</td>
+                                    <td>3:41 PM</td>
+                                    <td>Carlos</td>
+                                    <td>Stephany</td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <br />
+
+
+                    <section id="content">
+
+                        <div class="content-wrap" style="padding-bottom: 30px;">
+
+                            <div class="container clearfix">
+
+                                <!-- Charts Area
+                                ============================================= -->
+                                <div class="bottommargin divcenter" style="max-width: 750px; min-height: 350px;">
+                                    <canvas id="chart-0"></canvas>
+                                </div>
+
+                                <div class="toolbar center">
+                                    <button class="btn btn-secondary btn-sm" id="randomizeData">Datos aleatorios</button>
+                                    <button class="btn btn-secondary btn-sm" id="addDataset">Agregar conjunto de datos</button>
+                                    <button class="btn btn-secondary btn-sm" id="removeDataset">Eliminar conjunto de datos</button>
+                                    <button class="btn btn-secondary btn-sm" id="addData">Agregar Datos</button>
+                                    <button class="btn btn-secondary btn-sm" id="removeData">Eliminar Datos</button>
+                                </div>
+                                <!-- Charts Area End -->
+
+                                <div class="line"></div>
+                            </div>
+
+                        </div>
+
+                    </section><!-- #content end -->
+
+                </div>
+
+            </div>
+
+        </section><!-- #content end -->
+        <!-- Footer
+        ============================================= -->
+        <footer id="footer" class="dark">
+
+
+            <!-- Copyrights
+            ============================================= -->
+            <div id="copyrights">
+
+                <div class="container clearfix">
+
+                    <div class="col_half">
+                        Copyrights &copy; 2018 Derechos Reservados Universidad Hispanoamericana.<br>
+                    </div>
+
+                    <div class="col_half col_last tright">
+                        <div class="fright clearfix">
+                            <a href="https://es-la.facebook.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-facebook" target="_blank">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
+                            <a href="https://twitter.com/universidaduh?lang=es" class="social-icon inline-block si-small si-light si-rounded si-twitter" target="_blank">
+                                <i class="icon-twitter"></i>
+                                <i class="icon-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-instagram" target="_blank">
+                                <i class="icon-instagram"></i>
+                                <i class="icon-instagram"></i>
+                            </a>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <i class="icon-envelope2"></i> info@uh.ac.cr <span class="middot">&middot;</span> <i class="icon-headphones"></i> +506 2241-9090 <span class="middot">&middot;</span> <i class="icon-world"></i> http://www.uh.ac.cr
+                    </div>
+
+                </div>
+
+            </div><!-- #copyrights end -->
+
+        </footer><!-- #footer end -->
+
+  
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="~/Content/jquery.js"></script>
+    <script src="~/Content/plugins.js"></script>
+
+    <!-- Bootstrap Data Table Plugin -->
+    <script src="~/Content/bs-datatable.js"></script>
+
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/Content/functions.js"></script>
+
+    <!-- Charts JS
+    ============================================= -->
+    <script src="~/Content/chart.js"></script>
+    <script src="~/Content/chart-utils.js"></script>
+    <script src="~/Content/moment.js"></script>
+
+    <script>
+
+        var timeFormat = 'MM/DD/YYYY HH:mm';
+
+        function newDate(days) {
+            return moment().add(days, 'd').toDate();
+        }
+
+        function newDateString(days) {
+            return moment().add(days, 'd').format(timeFormat);
+        }
+
+        function newTimestamp(days) {
+            return moment().add(days, 'd').unix();
+        }
+
+        var color = Chart.helpers.color;
+        var config = {
+            type: 'line',
+            data: {
+                labels: [ // Date Objects
+                    newDate(0),
+                    newDate(1),
+                    newDate(2),
+                    newDate(3),
+                    newDate(4),
+                    newDate(5),
+                    newDate(6)
+                ],
+                datasets: [{
+                    label: "My First dataset",
+                    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.red,
+                    fill: false,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ],
+                }, {
+                    label: "My Second dataset",
+                    backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.blue,
+                    fill: false,
+                    data: [
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor(),
+                        randomScalingFactor()
+                    ],
+                }, {
+                    label: "Dataset with point data",
+                    backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+                    borderColor: window.chartColors.green,
+                    fill: false,
+                    data: [{
+                        x: newDateString(0),
+                        y: randomScalingFactor()
+                    }, {
+                        x: newDateString(5),
+                        y: randomScalingFactor()
+                    }, {
+                        x: newDateString(7),
+                        y: randomScalingFactor()
+                    }, {
+                        x: newDateString(15),
+                        y: randomScalingFactor()
+                    }],
+                }]
+            },
+            options: {
+                title: {
+                    text: "Chart.js Time Scale"
+                },
+                scales: {
+                    xAxes: [{
+                        type: "time",
+                        time: {
+                            format: timeFormat,
+                            // round: 'day'
+                            tooltipFormat: 'll HH:mm'
+                        },
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date'
+                        }
+                    },],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'value'
+                        }
+                    }]
+                },
+            }
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById("chart-0").getContext("2d");
+            window.myLine = new Chart(ctx, config);
+
+        };
+
+        document.getElementById('randomizeData').addEventListener('click', function () {
+            config.data.datasets.forEach(function (dataset) {
+                dataset.data.forEach(function (dataObj, j) {
+                    if (typeof dataObj === 'object') {
+                        dataObj.y = randomScalingFactor();
+                    } else {
+                        dataset.data[j] = randomScalingFactor();
+                    }
+                });
+            });
+
+            window.myLine.update();
+        });
+
+        var colorNames = Object.keys(window.chartColors);
+        document.getElementById('addDataset').addEventListener('click', function () {
+            var colorName = colorNames[config.data.datasets.length % colorNames.length];
+            var newColor = window.chartColors[colorName]
+            var newDataset = {
+                label: 'Dataset ' + config.data.datasets.length,
+                borderColor: newColor,
+                backgroundColor: color(newColor).alpha(0.5).rgbString(),
+                data: [],
+            };
+
+            for (var index = 0; index < config.data.labels.length; ++index) {
+                newDataset.data.push(randomScalingFactor());
+            }
+
+            config.data.datasets.push(newDataset);
+            window.myLine.update();
+        });
+
+        document.getElementById('addData').addEventListener('click', function () {
+            if (config.data.datasets.length > 0) {
+                config.data.labels.push(newDate(config.data.labels.length));
+
+                for (var index = 0; index < config.data.datasets.length; ++index) {
+                    if (typeof config.data.datasets[index].data[0] === "object") {
+                        config.data.datasets[index].data.push({
+                            x: newDate(config.data.datasets[index].data.length),
+                            y: randomScalingFactor(),
+                        });
+                    } else {
+                        config.data.datasets[index].data.push(randomScalingFactor());
+                    }
+                }
+
+                window.myLine.update();
+            }
+        });
+
+        document.getElementById('removeDataset').addEventListener('click', function () {
+            config.data.datasets.splice(0, 1);
+            window.myLine.update();
+        });
+
+        document.getElementById('removeData').addEventListener('click', function () {
+            config.data.labels.splice(-1, 1); // remove the label first
+
+            config.data.datasets.forEach(function (dataset, datasetIndex) {
+                dataset.data.pop();
+            });
+
+            window.myLine.update();
+        });
+
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#datatable1').dataTable();
+        });
+
+    </script>
+</body>
+</html>

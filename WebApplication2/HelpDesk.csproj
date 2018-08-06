@@ -265,7 +265,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Classes\Login.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Classes\Incidentes.cs" />
     <Compile Include="Classes\Mantenimientos.cs" />
@@ -274,16 +273,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Incidencia_Data.cs" />
+    <Compile Include="Models\Mantenimientos_Data.cs" />
     <Compile Include="Models\UserData_Send.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\90.jpg" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bs-datatable.js" />
+    <Content Include="Content\chart-utils.js" />
+    <Content Include="Content\chart.js" />
+    <Content Include="Content\functions.js" />
+    <Content Include="Content\jquery.js" />
+    <Content Include="Content\moment.js" />
+    <Content Include="Content\plugins.js" />
     <Content Include="Content\1.jpg" />
     <Content Include="Content\3.jpg" />
     <Content Include="Content\8.jpg" />
     <Content Include="Content\animate.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bs-datatable.css" />
     <Content Include="Content\camera_skins.png" />
     <Content Include="Content\dark.css" />
     <Content Include="Content\datepicker.css" />
@@ -299,7 +309,6 @@
     <Content Include="Content\iconalt.svg" />
     <Content Include="Content\ipad-section.png" />
     <Content Include="Content\iphone-solid.png" />
-    <Content Include="Content\LoginStyle.css" />
     <Content Include="Content\logo%402x.png" />
     <Content Include="Content\logo-dark%402x.png" />
     <Content Include="Content\logo-dark.png" />
@@ -381,6 +390,14 @@
     <Content Include="Views\Home\ListadoIncidencias.cshtml" />
     <Content Include="Views\Home\RegistroIncidencias.cshtml" />
     <Content Include="Views\Home\AgregarUsuario.cshtml" />
+    <Content Include="Views\Shared\_LogLayout.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Mantenimientos.cshtml" />
+    <Content Include="Views\Home\Activo.cshtml" />
+    <Content Include="Views\Home\Sede.cshtml" />
+    <Content Include="Views\Home\Categoria.cshtml" />
+    <Content Include="Views\Home\Departamento.cshtml" />
+    <Content Include="Views\Home\Reportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

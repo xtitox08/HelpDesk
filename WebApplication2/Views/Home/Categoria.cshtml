@@ -1,0 +1,191 @@
+﻿
+@{
+    ViewBag.Title = "Activo";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Raleway:300,400,500,600,700|Crete+Round:400i" rel="stylesheet" type="text/css" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/dark.css" rel="stylesheet" />
+    <link href="~/Content/font-icons.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/bs-datatable.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+    <link href="~/Content/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Content/timepicker.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/LoginStyle.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+</head>
+<body class="stretched" style="background:#555;">
+
+    <header id="header" class="dark full-header">
+
+        <div id="header-wrap">
+
+            <div class="container clearfix">
+
+                <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo">
+                    <a class="standard-logo"><img src="~/Content/logo.png" alt=""></a>
+
+                </div><!-- #logo end -->
+                <!-- Primary Navigation
+                ============================================= -->
+                <nav id="primary-menu" class="logueado">
+                    <ul>
+
+                        <li>   @Html.ActionLink("Listado de Incidencias", "ListadoIncidencias", "Home") </li>
+                        <li>   @Html.ActionLink("Agregar Usuario", "AgregarUsuario", "Home") </li>
+                        <li>   @Html.ActionLink("Registro de Incidencias", "RegistroIncidencias", "Home") </li>
+                        <li>@Html.ActionLink("Reportes", "Reportes", "Home")</li>
+                        <li>@Html.ActionLink("Cerrar", "Login", "Home")</li>
+                    </ul>
+                </nav><!-- #primary-menu end -->
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section>
+        <div class="container clearfix">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="nobottommargin">
+                        
+                            <h3 style=" color:white; margin-top: 50px;"><font>Ingreso Nueva Categoria </font></h3>
+
+                            <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+                                <div class="col_half">
+                                    <label for="register-form-nameID"><font style="vertical-align: inherit; color:white;">ID de la Categoria:</font></label>
+                                    <input type="text" id="register-form-nameID" disabled="disabled" name="ID" value="" class="form-control">
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_half">
+                                    <label for="register-form-name"><font style="vertical-align: inherit; color:white;">Nombre Categoria:</font></label>
+                                    <input type="text" id="register-form-name" name="Name" value="" class="form-control">
+                                </div>
+
+
+                                <div class="clear"></div>
+
+                                <div class="col_half">
+                                    <label for="register-form-sede"><font style="vertical-align: inherit;"><font style="vertical-align: inherit; color:white;">Ubicación de la Categoria:</font></font></label>
+                                    <select class="form-control" id="register-form-sede" name="Place">
+                                        <option>Aranjuez</option>
+                                        <option>Llorente</option>
+                                        <option>Heredia</option>
+                                        <option>Puntarenas</option>
+                                    </select>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="col_full nobottommargin">
+                                    <button class="button button-3d button-green nomargin" id="register-form-submit" name="register-form-submit" value="register" > <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Categoria</font></font></button>
+                                </div>
+                                <div class="clear"></div>
+
+                                <br />
+                                <div style="text-align: center; margin-top: -300px;">
+                                    <button type="button" class="btn btn-primary button-blue fa fa-edit" style="font-size:48px; color:white; padding-bottom: 10px; padding-top: 4px; padding-left: 10px; padding-right: 5px;"></button></a>
+                                </div>
+                                <div class="clear"></div>
+
+                                <br />
+                                <div style="text-align: center; margin-top: -100px; margin-bottom: 150px;">
+                                    <button type="button" onclick="window.location.href='Mantenimientos'"  class="btn button-red nomargin fa fa-remove" style="font-size:48px; color:white; padding-bottom: 10px; padding-top: 4px; padding-left: 15px; padding-right: 10px;"></button></a>
+                                </div>
+                                <div class="clear"></div>
+
+                            </form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- #page-title end -->
+
+
+
+
+    <!-- Footer
+        ============================================= -->
+    <footer id="footer" class="dark">
+
+
+        <!-- Copyrights
+        ============================================= -->
+        <div id="copyrights">
+
+            <div class="container clearfix">
+
+                <div class="col_half">
+                    Copyrights &copy; 2018 Derechos Reservados Universidad Hispanoamericana.<br>
+                </div>
+
+                <div class="col_half col_last tright">
+                    <div class="fright clearfix">
+                        <a href="https://es-la.facebook.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-facebook" target="_blank">
+                            <i class="icon-facebook"></i>
+                            <i class="icon-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/universidaduh?lang=es" class="social-icon inline-block si-small si-light si-rounded si-twitter" target="_blank">
+                            <i class="icon-twitter"></i>
+                            <i class="icon-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/uhispanoamericana/" class="social-icon inline-block si-small si-light si-rounded si-instagram" target="_blank">
+                            <i class="icon-instagram"></i>
+                            <i class="icon-instagram"></i>
+                        </a>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <i class="icon-envelope2"></i> info@uh.ac.cr <span class="middot">&middot;</span> <i class="icon-headphones"></i> +506 2241-9090 <span class="middot">&middot;</span> <i class="icon-world"></i> http://www.uh.ac.cr
+                </div>
+
+            </div>
+
+        </div><!-- #copyrights end -->
+
+    </footer><!-- #footer end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script src="~/Content/jquery.js"></script>
+    <script src="~/Content/plugins.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/Content/plugins.js"></script>
+
+</body>
+</html>
