@@ -120,14 +120,19 @@ namespace WebApplication2.Controllers
             }
          bool result =   Usuarios.Login_Verification(conn, UserName, Password);//returns wheter there is a match between user and pass or not
 
-            if (result) { Current_User = UserName; return View("Index"); }//returns index
+            if (result) {
+             
+                Current_User = UserName;  return View("Index"); }//returns index
 
             return View();//returns login page
 
 
         }
 
-
+        interface IHeaderInfo
+        {
+            string PageUser { get; set; }
+        }
 
         [HttpPost]
         public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
