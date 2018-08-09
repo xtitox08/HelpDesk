@@ -116,43 +116,51 @@
                             <thead>
                                 <tr style="color:#20c997">
                                     <th>Codigo</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Fecha Asignacion</th>
+                                    <th>Cedula</th>
                                     <th>Asunto</th>
-                                    <th>Fecha Ingreso</th>
-                                    <th>Fecha Asignación</th>
-                                    <th>Fecha Finalización</th>
-                                    <th>Hora Asignación</th>
-                                    <th>Hora Finalizacion</th>
-                                    <th>Técnico</th>
-                                    <th>Usuario</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Codigo</th>
+                                    <th>Fecha Registro</th>
+                                    <th>Fecha Asignacion</th>
+                                    <th>Cedula</th>
                                     <th>Asunto</th>
-                                    <th>Fecha Ingreso</th>
-                                    <th>Fecha Asignación</th>
-                                    <th>Fecha Finalización</th>
-                                    <th>Hora Asignación</th>
-                                    <th>Hora Finalizacion</th>
-                                    <th>Técnico</th>
-                                    <th>Usuario</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td>No sirve el internet</td>
-                                    <td>7/30/2018</td>
-                                    <td>8/30/2018</td>
-                                    <td>8/30/2018</td>
-                                    <td>3:41 PM</td>
-                                    <td>3:41 PM</td>
-                                    <td>Carlos</td>
-                                    <td>Stephany</td>
-                                </tr>
+
+                                @{ var result = ViewBag.Message;
+
+                                }
+                                @{
+                                    int Foward = 0;
+                                    for (int i = 0; i < (result.Activos.Count * 5 / 25); i++)
+                                    {
+
+                                        <tr>
+                                            <td> @result.Activos[i + (Foward) + 0]</td>
+                                            <td>@result.Activos[i + (Foward) + 1]</td>
+                                            <td>@result.Activos[i + (Foward) + 2]</td>
 
 
+                                            <td>@result.Activos[i + (Foward) + 3]</td>
+                                            <td>@result.Activos[i + (Foward) + 4]</td>
+                                   
+                                        </tr>
+
+
+                                        Foward += 4;
+                                    }
+
+
+
+
+
+                                }
 
                             </tbody>
                         </table>

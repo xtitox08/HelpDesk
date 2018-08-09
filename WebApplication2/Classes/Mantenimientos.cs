@@ -69,14 +69,6 @@ namespace WebApplication2.Controllers
 
 
 
-
-
-
-
-
-
-
-
         public void Activo_Data(MySql.Data.MySqlClient.MySqlConnection conn ,String ID, String Name, String Place,String Quantity) {
       
             String Sede_ID;//variables for queries and insert

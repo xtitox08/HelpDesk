@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "ListadoIncidencias";
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,7 +19,6 @@
                                 <th>Codigo</th>
                                 <th>Asunto</th>
                                 <th>Fecha Ingreso</th>
-                                <th>Hora Ingreso</th>
                                 <th>Usuario</th>
                                 <th>Tipo Solicitud</th>
                                 <th>Categoria</th>
@@ -30,60 +29,47 @@
                         </thead>
                  
                         <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>No sirve el internet</td>
-                                <td>7/30/2018</td>
-                                <td>2:53 PM</td>
-                                <td>Carlos</td>
-                                <td>Soporte Técnico</td>
-                                <td>Red/Web</td>
-                                <td><i class="icon-ok-sign" style="color:#2ecc71; font-size: 25px;"></i></td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Stephany</option>
-                                        <option>Carlos</option>
-                                        <option>Henry</option>
-                                    </select>
-                                </td>
-                                <td>Alta</td>
-                            </tr>
+                          
+                           @{ var result = ViewBag.Message;
 
-                            <tr>
-                                <td>01</td>
-                                <td>No sirve el internet</td>
-                                <td>7/30/2018</td>
-                                <td>2:53 PM</td>
-                                <td>Carlos</td>
-                                <td>Soporte Técnico</td>
-                                <td>Red/Web</td>
-                                <td><i class="icon-user" style="color:yellow; font-size: 25px;"></i></td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>Stephany</option>
-                                        <option>Carlos</option>
-                                        <option>Henry</option>
-                                    </select>
-                                </td>
-                                <td>Alta</td>
-                            </tr>
+                            }
+                            @{ 
+                                    int Foward = 0;
+                                    for(int i = 0; i < (result.Activos.Count*4/28);i++)
+                                    {
 
-                            <tr>
-                                <td>01</td>
-                                <td>No sirve el internet</td>
-                                <td>7/30/2018</td>
-                                <td>2:53 PM</td>
-                                <td>Carlos</td>
-                                <td>Soporte Técnico</td>
-                                <td>Red/Web</td>
-                                <td><i class="icon-remove" style="color:red; font-size: 25px;"></i></td>
-                                <td>
-                                    <select class="form-control">
-                                    
-                                    </select>
-                                </td>
-                                <td>Alta</td>
-                            </tr>
+                                <tr>
+                                    <td @result.Activos[i+(Foward)+0]>@result.Activos[0]</td>
+                                    <td>@result.Activos[i+ (Foward) + 1]</td>
+                                    <td>@result.Activos[i + (Foward) + 2]</td>
+
+
+                                    <td>@result.Activos[i + (Foward) + 3]</td>
+                                    <td>@result.Activos[i + (Foward) + 4]</td>
+                                    <td>@result.Activos[i + (Foward) + 5]</td>
+                                    <td>@result.Activos[i + (Foward) + 7]</td>
+                                    <td>
+                                        <select class="form-control">
+                                          
+                                        </select>
+                                    </td>
+                                    <td>@result.Activos[i + (Foward) + 6]</td>
+                                </tr>
+
+
+                                    Foward += 7;
+                                }
+
+
+
+
+
+                                }
+
+
+
+                    
+         
 
 
 

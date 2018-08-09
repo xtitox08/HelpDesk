@@ -113,7 +113,8 @@ namespace WebApplication2.Controllers
 
             SomeValue = reader["Contraseña"].ToString();
             // obtiene primer valor
-
+            reader.Close();
+            
             if (!Password.Equals(SomeValue)) {
                 return false;
             }

@@ -14,7 +14,8 @@ namespace WebApplication2.Controllers
         Incidentes Incidentes = new Incidentes();
         Usuarios Usuarios = new Usuarios();
         Mantenimientos Man = new Mantenimientos();
-        String Current_User;
+        Reportes Report = new Reportes();
+        
         MySql.Data.MySqlClient.MySqlConnection conn;
         string MyConnectionString = "";
 
@@ -28,15 +29,22 @@ namespace WebApplication2.Controllers
 
         public ActionResult Login()
         {
-            Current_User = "";
+        
             return View();
         }
 
         public ActionResult ListadoIncidencias()
         {
-            ViewBag.Message = "ListadoIncidencias";
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+
+            Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
+            ViewBag.Message = Result;//passing instance to view 
 
             return View();
+          
         }
 
         public ActionResult RegistroIncidencias()
@@ -47,8 +55,8 @@ namespace WebApplication2.Controllers
                 Connection();//Open connection to aws method
             }
            
-           Incidencia_Data result = Incidentes.Activos(conn);
-            ViewBag.Message = result;//passing instance to view 
+           Incidencia_Data Result = Incidentes.Activos(conn);
+            ViewBag.Message = Result;//passing instance to view 
 
             return View();
         }
@@ -70,8 +78,17 @@ namespace WebApplication2.Controllers
         }
         public ActionResult Reportes()
         {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+
+            Incidencia_Data Result = Report.ListarReportes(conn);
+            ViewBag.Message = Result;//passing instance to view 
 
             return View();
+   
+           
         }
 
         //Maintance options
@@ -121,8 +138,8 @@ namespace WebApplication2.Controllers
          bool result =   Usuarios.Login_Verification(conn, UserName, Password);//returns wheter there is a match between user and pass or not
 
             if (result) {
-             
-                Current_User = UserName;  return View("Index"); }//returns index
+                Incidentes.Insert_Temp_User(conn,UserName);
+                return View("Index"); }//returns index
 
             return View();//returns login page
 
@@ -182,15 +199,20 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult RegistroIncidencias(String ID, String Cedula, String Date, String About, String Service, String Type, String Lista, String Priority)
         {
-            return View(ID + Cedula + Date + About + Service + Type + Lista + Priority + Current_User);
+           
 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
                 Connection();//Open connection to aws method
             }
-            Incidentes.Insert_Data(conn,ID, Cedula,  Date,  About,  Service,  Type,  Lista,  Priority, Current_User);
-            ViewBag.Message = Man.Id_Sede(conn);
-            ;
+            String Current_User = Incidentes.Current_User(conn);
+
+       
+
+            Incidentes.Insert_Data(conn, ID, Cedula, Date, About, Service, Type, Lista, Priority,Current_User);
+            Incidencia_Data result = Incidentes.Activos(conn);
+            ViewBag.Message = result;//passing instance to view 
+            return View();
 
         }
         //-----------------End of post methods--------------
