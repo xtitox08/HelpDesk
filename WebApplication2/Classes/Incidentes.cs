@@ -129,16 +129,37 @@ namespace WebApplication2.Controllers
 
         }
 
+          public String Id_OfCurrentUser(MySql.Data.MySqlClient.MySqlConnection conn)
+        {
+            String Email = Current_User(conn);
+            string Query = "SELECT `Usuario`.`Id_Rol` FROM `mydb`.`Usuario` WHERE Correo_Electronico = '"+Email+"'; ";
+
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+            var Reader = Cmd.ExecuteReader();
+            Reader.Read();
+            //get quantity of items
+            String User = Reader["Id_Rol"].ToString();
+
+            Reader.Close();
+            return User;
+
+
+        }
+
         public void Insert_Temp_User(MySql.Data.MySqlClient.MySqlConnection conn,String Current_User)
         {
-
-
             String DB_Insert;
+            String DB_Truncate = "TRUNCATE Current_User_Temp;";
+
+            var Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Truncate, conn);//Insert comm
+            var executer = Insert.ExecuteNonQuery();//execute non query 
+
+          
             //Insert in db 
             DB_Insert = " INSERT INTO `mydb`.`Current_User_Temp` (`Current_User`) VALUES ('" + Current_User + "');";
          
-            var Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Insert, conn);//Insert comm
-            var executer = Insert.ExecuteNonQuery();//execute non query 
+             Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Insert, conn);//Insert comm
+             executer = Insert.ExecuteNonQuery();//execute non query 
 
 
 

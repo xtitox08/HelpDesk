@@ -63,18 +63,39 @@ namespace WebApplication2.Controllers
         int ID_OF_User;
         public ActionResult AgregarUsuario()
         {
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)
+            {
+                UserData_Send Result = ID_Recover();
 
-            UserData_Send Result = ID_Recover();
+                ViewBag.Message = Result;//passing instance to view 
 
-            ViewBag.Message = Result;//passing instance to view 
+                return View();
 
-            return View();
+            }
+            else {
+                return View("Error");
+
+            }
+           
         }
         
         public ActionResult Mantenimientos()
         {
-
-            return View();
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)
+            {
+                return View();
+            }
+            else {
+                return View("Error");
+            }
         }
         public ActionResult Reportes()
         {
@@ -82,13 +103,20 @@ namespace WebApplication2.Controllers
             {
                 Connection();//Open connection to aws method
             }
+            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)
+            {
+                Incidencia_Data Result = Report.ListarReportes(conn);
+                ViewBag.Message = Result;//passing instance to view 
 
-            Incidencia_Data Result = Report.ListarReportes(conn);
-            ViewBag.Message = Result;//passing instance to view 
+                return View();
+            }
+            else
+            {
+                return View("Error");
+            }
 
-            return View();
-   
-           
+
+
         }
 
         //Maintance options
@@ -199,22 +227,41 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult RegistroIncidencias(String ID, String Cedula, String Date, String About, String Service, String Type, String Lista, String Priority)
         {
-           
 
-            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            try
             {
-                Connection();//Open connection to aws method
+                if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+                {
+                    Connection();//Open connection to aws method
+                }
+                Incidencia_Data result = Incidentes.Activos(conn);
+                ViewBag.Message = result;//passing instance to view 
+
+                if (!Date.Substring(0, 4).Contains("/") && Date.Substring(5, 5).Length == 5)
+                {
+
+
+                    String Current_User = Incidentes.Current_User(conn);
+
+
+
+                    Incidentes.Insert_Data(conn, ID, Cedula, Date, About, Service, Type, Lista, Priority, Current_User);
+
+                    ViewBag.AlertMessage = "Incidencia Registrada";
+
+
+                    return View();
+                }
+                else { ViewBag.AlertMessage = "Error, revisa correctamente los espacios rellenados y recuerda que la fecha es formato yyyy/mm/dd"; return View(); }
+
             }
-            String Current_User = Incidentes.Current_User(conn);
+            catch (Exception) {
+                ViewBag.AlertMessage = "Se produjo un error, revisa correctamente los espacios rellenados y recuerda que la fecha es formato yyyy/mm/dd"; return View();
 
-       
+            }
 
-            Incidentes.Insert_Data(conn, ID, Cedula, Date, About, Service, Type, Lista, Priority,Current_User);
-            Incidencia_Data result = Incidentes.Activos(conn);
-            ViewBag.Message = result;//passing instance to view 
-            return View();
 
-        }
+            }
         //-----------------End of post methods--------------
 
 
