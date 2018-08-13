@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MySql.Data;
 using WebApplication2.Models;
+using System.Collections;
 
 namespace WebApplication2.Controllers
 {
@@ -35,15 +36,24 @@ namespace WebApplication2.Controllers
 
         public ActionResult ListadoIncidencias()
         {
+
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
                 Connection();//Open connection to aws method
             }
+            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)
+            {
+                Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
+              ArrayList Personnel =  Incidentes.ListOfPersonnel(conn);
+                ViewBag.Personnel = Personnel;
+                ViewBag.Message = Result;//passing instance to view 
 
-            Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
-            ViewBag.Message = Result;//passing instance to view 
-
-            return View();
+                return View("Admin_Assignments");
+            }
+            else {
+                Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
+                ViewBag.Message = Result;//passing instance to view 
+                return View(); }
           
         }
 
@@ -169,6 +179,8 @@ namespace WebApplication2.Controllers
                 Incidentes.Insert_Temp_User(conn,UserName);
                 return View("Index"); }//returns index
 
+            ViewBag.AlertMessage = "Error, Usuario y/o Contraseña no valida;";
+
             return View();//returns login page
 
 
@@ -182,17 +194,20 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
         {
-            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            try
             {
-                Connection();//Open connection to aws method
+                if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+                {
+                    Connection();//Open connection to aws method
+                }
+                Usuarios.User_Data(conn, ID_OF_User, email, UserName, pass, sede, area, department, estado);//passing info to insert 
+
+                UserData_Send Result = ID_Recover();//metodo recupera id usuario nuevo 
+                ViewBag.Message = Result;//passing instance to view 
+                ViewBag.AlertMessage = "Usuario agregado con exito!";
+                return View(ID_OF_User);
             }
-            Usuarios.User_Data(conn, ID_OF_User, email, UserName, pass, sede, area, department, estado);//passing info to insert 
-
-            UserData_Send Result = ID_Recover();//metodo recupera id usuario nuevo 
-            ViewBag.Message = Result;//passing instance to view 
-
-            return View(ID_OF_User);
-
+            catch (Exception) { ViewBag.AlertMessage = "Error en los espacios de rellenado, intentelo denuevo y verifique su informacion"; return View(ID_OF_User); }
         }
 
 
@@ -262,6 +277,27 @@ namespace WebApplication2.Controllers
 
 
             }
+        [HttpPost]
+        public ActionResult ListadoIncidencias(String Code, String Personnel)
+        {
+
+            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            {
+                Connection();//Open connection to aws method
+            }
+            try
+            {
+                Incidentes.UpdateAssignment(conn, Code, Personnel);
+                ViewBag.AlertMessage = "Tecnico asignado!";
+                return View();
+            }
+            catch (Exception) { ViewBag.AlertMessage = "Se ha producido un error, verifiquelos campos de entrada e intentelo denuevo"; return View(); }
+
+         
+
+        }
+
+
         //-----------------End of post methods--------------
 
 

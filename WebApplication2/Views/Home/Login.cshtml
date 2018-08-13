@@ -4,7 +4,14 @@
     Layout = "~/Views/Shared/_LogLayout.cshtml";
 }
 
+@{
 
+    if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        <script>alert("@ViewBag.AlertMessage");</script>
+    }
+
+}
 <section id="page-title" class="page-title-parallax page-title-dark" style="padding: 250px 0; background-image: url('../../Content/parallax.jpg'); background-size: cover; background-position: center center;" data-bottom-top="background-position:0px 400px;" data-top-bottom="background-position:0px -500px;">
 
     <div class="container clearfix">

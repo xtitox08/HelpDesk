@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Admin_Assignments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+
+    if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        <script>alert("@ViewBag.AlertMessage");</script>
+    }
+
+}
+
+<section id="content">
+
+    <div class="content-wrap">
+
+        <div class="container clearfix">
+
+
+            <div class="table-responsive">
+                <table id="datatable1" class="table table-striped table-bordered table-dark" cellspacing="0" width="100%">
+                    <thead>
+                        <tr style="color:#20c997">
+                            <th>Codigo</th>
+                            <th>Asunto</th>
+                            <th>Fecha Ingreso</th>
+                            <th>Usuario</th>
+                            <th>Tipo Solicitud</th>
+                            <th>Categoria</th>
+                            <th>Estado</th>
+                            <th>Técnico</th>
+                            <th>Prioridad</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @{ var result = ViewBag.Message;
+
+                        }
+                        @{
+
+                            int Foward = 0;
+                            for (int i = 0; i < (result.Activos.Count * 4 / 28); i++)
+                            {
+
+                                <tr>
+                                    <td @result.Activos[i + (Foward) + 0]>@result.Activos[i + (Foward) + 0]</td>
+                                    <td>@result.Activos[i + (Foward) + 1]</td>
+                                    <td>@result.Activos[i + (Foward) + 2]</td>
+
+
+                                    <td>@result.Activos[i + (Foward) + 3]</td>
+                                    <td>@result.Activos[i + (Foward) + 4]</td>
+                                    <td>@result.Activos[i + (Foward) + 5]</td>
+                                    <td>@result.Activos[i + (Foward) + 7]</td>
+                                    <td>
+                                        <select class="form-control">
+                                            @*tecnicos llenar en mirror page*@
+
+                                        </select>
+                                    </td>
+                                    <td>@result.Activos[i + (Foward) + 6]</td>
+                                </tr>
+
+
+                                Foward += 7;
+                            }
+
+
+
+
+
+                        }
+
+
+
+
+
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Asignacion de Tecnicos</font></font></h3>
+
+    <div class="input-daterange travel-date-group bottommargin-sm">
+
+        <form id="register-form" name="register-form" class="nobottommargin" action="#" method="post">
+
+            <div class="col_half">
+                <label for="register-form-nameID"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Codigo de incidencia</font></font></label>
+                <input type="number" id="register-form-nameID"  name="Code" value="" class="form-control">
+            </div>
+
+            <div class="col_half">
+                <select class="form-control" id="register-form-tipoIncidente" name="Personnel">
+                  @*options with ti personnel*@
+                    @{
+
+                        var Personnel = ViewBag.Personnel;
+                    }
+
+                    @foreach (String item in Personnel)
+                    {
+
+                        <option value="@item">@item</option>
+                    }
+
+
+                 
+
+                </select>
+            </div>
+
+            <button class="button button-3d button-yellow nomargin" id="register-form-submit" name="register-form-submit" value="register" style="-webkit-box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);
+								-moz-box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);
+								box-shadow: -1px 2px 100px -13px rgba(204,197,55,1);">
+                <font style="vertical-align: inherit; color:black;"><font style="vertical-align: inherit;">Asignar Tecnico</font></font>
+                </button>
+</form>
+
+
+            </div>
+
+    
+
+</section><!-- #content end -->
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<!-- External JavaScripts
+============================================= -->
+<script src="~/Content/jquery.js"></script>
+<script src="~/Content/plugins.js"></script>
+
+<!-- Bootstrap Data Table Plugin -->
+<script src="~/Content/bs-datatable.js"></script>
+
+
+<!-- Footer Scripts
+============================================= -->
+<script src="~/Content/functions.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $('#datatable1').dataTable();
+    });
+
+</script>
+

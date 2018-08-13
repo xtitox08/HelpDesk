@@ -181,6 +181,22 @@ namespace WebApplication2.Controllers
             return Id_Incidencia;
 
         }
+        public String GetUserID_ByName(MySql.Data.MySqlClient.MySqlConnection conn,String ID)
+        {
+  
+
+            string Query = "SELECT `Usuario`.`Id_Usuario` FROM `mydb`.`Usuario` WHERE Nombre_Usuario = '" + ID+ "'; ";
+
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+            var Reader = Cmd.ExecuteReader();
+            Reader.Read();
+            //get quantity of items
+            String Id_Usuario = Reader["Id_Usuario"].ToString();
+
+            Reader.Close();
+            return Id_Usuario;
+
+        }
 
 
 
@@ -231,6 +247,76 @@ namespace WebApplication2.Controllers
 
 
 
+        public ArrayList ListOfPersonnel(MySql.Data.MySqlClient.MySqlConnection conn) {
+
+
+            ArrayList Personnel = new ArrayList();
+            string Query = "SELECT `Usuario`.`Nombre_Usuario` FROM `mydb`.`Usuario` WHERE Id_Rol = " + 17 + "; ";
+            String SecondQuery = "SELECT COUNT(*) FROM Usuario WHERE Id_Rol = 17;";
+
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(SecondQuery, conn);
+            var Reader = Cmd.ExecuteReader();
+            Reader.Read();
+            //get quantity of items
+            int Count = Convert.ToInt32(Reader["COUNT(*)"].ToString());
+
+
+            Reader.Close();
+
+            Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+             Reader = Cmd.ExecuteReader();
+
+            for (int i = 0; i < Count; i++)
+            {
+                Reader.Read();
+
+                Personnel.Add(Reader["Nombre_Usuario"].ToString());
+            }
+
+            Reader.Close();
+            return Personnel;
+
+        }
+
+        public String Cedula_ByID(MySql.Data.MySqlClient.MySqlConnection conn,String Code) {
+          
+            string Query = "SELECT Incidencia.Cedula_Solicitante FROM Incidencia WHERE Incidencia.Id_Incidencia = "+Code+"; ";
+
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+            var Reader = Cmd.ExecuteReader();
+            Reader.Read();
+            //get quantity of items
+            String Id_Usuario = Reader["Cedula_Solicitante"].ToString();
+
+            Reader.Close();
+            return Id_Usuario;
+
+
+
+        }
+        public void UpdateAssignment(MySql.Data.MySqlClient.MySqlConnection conn, String Code,String Personnel) {
+            DateTime date = DateTime.Today;
+            String today = date.ToString("d", CultureInfo.CreateSpecificCulture("ja-JP"));
+        
+ 
+            String DB_Change = "UPDATE `mydb`.`Incidencia` SET `Fecha_Atencion` = '"+ today+"' WHERE `Id_Incidencia` = "+Code+";";
+
+            var Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Change, conn);//Insert comm
+            var executer = Insert.ExecuteNonQuery();//execute non query 
+
+            DB_Change = "UPDATE `mydb`.`Reportes` SET `Fecha_Asignacion` = '"+today+"' WHERE `Id_Reportes` = '"+ Cedula_ByID(conn,Code)  +"';";
+
+            Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Change, conn);//Insert comm
+             executer = Insert.ExecuteNonQuery();//execute non query 
+
+
+        }
+
+
+
+
+
+
 
 
 
@@ -251,7 +337,7 @@ namespace WebApplication2.Controllers
             MySql.Data.MySqlClient.MySqlConnection conn;
             conn = new MySql.Data.MySqlClient.MySqlConnection();
             conn.ConnectionString = MyConnectionString;
-         
+
             return conn;
         }
 

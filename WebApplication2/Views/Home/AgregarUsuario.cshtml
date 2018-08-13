@@ -7,7 +7,14 @@
 }
 
 
+@{
 
+    if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        <script>alert("@ViewBag.AlertMessage");</script>
+    }
+
+}
 <section id="content">
 
     <div class="content-wrap">
