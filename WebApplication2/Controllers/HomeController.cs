@@ -49,12 +49,15 @@ namespace WebApplication2.Controllers
               ArrayList Personnel =  Incidentes.ListOfPersonnel(conn);
                 ViewBag.Personnel = Personnel;
                 ViewBag.Message = Result;//passing instance to view 
-
+                int Quantity = Convert.ToInt32(Incidentes.Quantity(conn)  );
+                ViewBag.Quantity = Quantity;
                 return View("Admin_Assignments");
             }
             else {
                 Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
                 ViewBag.Message = Result;//passing instance to view 
+                int Quantity = Convert.ToInt32(Incidentes.Quantity(conn));
+                ViewBag.Quantity = Quantity;
                 return View(); }
           
         }
@@ -201,6 +204,8 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult AgregarUsuario(String ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
         {
+            ViewBag.AlertMessage = "Usuario agregado con exito!";
+            UserData_Send Result = ID_Recover();//metodo recupera id usuario nuevo 
             try
             {
                 if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
@@ -208,11 +213,12 @@ namespace WebApplication2.Controllers
                     Connection();//Open connection to aws method
                 }
                 Usuarios.User_Data(conn, ID_OF_User, email, UserName, pass, sede, area, department, estado);//passing info to insert 
-
-                UserData_Send Result = ID_Recover();//metodo recupera id usuario nuevo 
+           
                 ViewBag.Message = Result;//passing instance to view 
-                ViewBag.AlertMessage = "Usuario agregado con exito!";
+        
                 return View(ID_OF_User);
+
+
             }
             catch (Exception) { ViewBag.AlertMessage = "Error en los espacios de rellenado, intentelo denuevo y verifique su informacion"; return View(ID_OF_User); }
         }
@@ -221,30 +227,43 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Activo(String ID, String Name,String Place,String Quantity)
         {
-           
-            if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+            try
             {
-                Connection();//Open connection to aws method
+                if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
+                {
+                    Connection();//Open connection to aws method
+                }
+                Man.Activo_Data(conn, ID, Name, Place, Quantity);
+                ViewBag.AlertMessage = "Activo agregado con exito";
+                ViewBag.Message = Man.Id_Activo(conn);
+                return View();
             }
-            Man.Activo_Data(conn,ID,Name,Place,Quantity);
-            ViewBag.Message = Man.Id_Activo(conn);
-            return View();
+            catch (Exception) {
+                ViewBag.AlertMessage = "Error, verifique sus espacios de entrada";
+                return View(); }
+
+        
 
         }
 
         [HttpPost]
         public ActionResult Sede(String ID, String Name, String Place)
         {
-
+            try { 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
                 Connection();//Open connection to aws method
             }
             Man.Sede_Data(conn, ID, Name, Place);
-            ViewBag.Message = Man.Id_Sede(conn);
+                ViewBag.AlertMessage = "Activo agregado con exito";
+                ViewBag.Message = Man.Id_Sede(conn);
             return View(ID);
-
         }
+            catch (Exception) {
+                ViewBag.AlertMessage = "Error, verifique sus espacios de entrada";
+                return View(ID);
+    }
+}
 
         [HttpPost]
         public ActionResult RegistroIncidencias(String ID, String Cedula, String Date, String About, String Service, String Type, String Lista, String Priority)
@@ -300,7 +319,7 @@ namespace WebApplication2.Controllers
                 ViewBag.Message = Result;//passing instance to view 
 
                 Incidentes.UpdateAssignment(conn, Code, Personnel);
-                ViewBag.AlertMessage = "Tecnico asignado! (Si no ve los resultados recargue la pagina) ";
+                ViewBag.AlertMessage = "Tecnico asignado! Presione Listado de Incidencia si requiere ver la tabla de incidencias ";
                 return View("Admin_Assignments");
             }
             catch (Exception) { ViewBag.AlertMessage = "Se ha producido un error, verifiquelos campos de entrada e intentelo denuevo"; return View("Admin_Assignments"); }

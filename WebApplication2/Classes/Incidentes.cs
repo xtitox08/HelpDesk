@@ -12,25 +12,25 @@ namespace WebApplication2.Controllers
     {
      
         //return table activos items
-        public Incidencia_Data Activos(MySql.Data.MySqlClient.MySqlConnection conn)
+        public Incidencia_Data Activos(MySql.Data.MySqlClient.MySqlConnection conn)//Gets the lists of items in table Activos on database
         {
             ArrayList Lista_Activos = new ArrayList();
-            string Query = "SELECT `Activo`.`Nombre` FROM `mydb`.`Activo` ; ";
+            string Query = "SELECT `Activo`.`Nombre` FROM `mydb`.`Activo` ; ";//initializing query variable
             string SecondQuery = "Select COUNT(*) FROM mydb.Activo;";
-            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(SecondQuery, conn);
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(SecondQuery, conn);//applying mysql Command
             var Reader = Cmd.ExecuteReader();
             Reader.Read();
             //get quantity of items
-            int Activos_Quantity = Convert.ToInt32(Reader["COUNT(*)"].ToString());
+            int Activos_Quantity = Convert.ToInt32(Reader["COUNT(*)"].ToString());//Quantity Variable
 
             Reader.Close();
 
 
-            Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+            Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);//executing second count query
             Reader = Cmd.ExecuteReader();
 
 
-            for (int i = 0; i < Activos_Quantity; i++) {
+            for (int i = 0; i < Activos_Quantity; i++) {//adding each read of table
                 Reader.Read();
                 Lista_Activos.Add(Reader["Nombre"].ToString());
             }
@@ -44,17 +44,17 @@ namespace WebApplication2.Controllers
             return Lista;
         }
 
-        public int Id_Incidencia(MySql.Data.MySqlClient.MySqlConnection conn) {
-            string Query = "SELECT `Incidencia`.`Id_Incidencia` FROM `mydb`.`Incidencia` order by Id_Incidencia DESC LIMIT 1; ";
+        public int Id_Incidencia(MySql.Data.MySqlClient.MySqlConnection conn) {// Gets the ID of table Incidencia that has to be the next ID for new Incident
+            string Query = "SELECT `Incidencia`.`Id_Incidencia` FROM `mydb`.`Incidencia` order by Id_Incidencia DESC LIMIT 1; ";//query variable 
 
-            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(Query, conn);//command variable
             var Reader = Cmd.ExecuteReader();
             Reader.Read();
             //get quantity of items
-            int Id_Incidencia = Convert.ToInt32(Reader["Id_Incidencia"].ToString())+1;
+            int Id_Incidencia = Convert.ToInt32(Reader["Id_Incidencia"].ToString())+1;//Reads the 'Id incidencia' field
 
             Reader.Close();
-            return Id_Incidencia ;
+            return Id_Incidencia ;//returns Id_Incidencia
 
         }
 
@@ -246,7 +246,18 @@ namespace WebApplication2.Controllers
 
         }
 
+        public String Quantity(MySql.Data.MySqlClient.MySqlConnection conn) {
+            string SecondQuery = "Select COUNT(*) FROM mydb.Incidencia;";
+            var Cmd = new MySql.Data.MySqlClient.MySqlCommand(SecondQuery, conn);
+            var Reader = Cmd.ExecuteReader();
+            Reader.Read();
+            //get quantity of items
+           String Incidencia_Quantity = Reader["COUNT(*)"].ToString();
 
+            Reader.Close();
+            return Incidencia_Quantity;
+
+        }
 
         public ArrayList ListOfPersonnel(MySql.Data.MySqlClient.MySqlConnection conn) {
 

@@ -4,6 +4,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+
+    if (!string.IsNullOrEmpty(ViewBag.AlertMessage))
+    {
+        <script>alert("@ViewBag.AlertMessage");</script>
+    }
+
+}
+
 
     <section id="content">
 
@@ -30,13 +39,13 @@
                  
                         <tbody>
                           
-                           @{ var result = ViewBag.Message;
+                            @{ var result = ViewBag.Message;
 
                             }
                             @{
 
                                 int Foward = 0;
-                                for (int i = 0; i < (result.Activos.Count * 5 / 40); i++)
+                                for (int i = 0; i < ViewBag.Quantity; i++)
                                 {
 
                                     <tr>

@@ -20,7 +20,7 @@ namespace WebApplication2.Controllers
 
             SomeValue = reader["`Usuario`.`Id_Usuario`+1"].ToString();
             // obtiene primer valor
-           
+            reader.Close();
 
             return SomeValue;
 

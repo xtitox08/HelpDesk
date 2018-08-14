@@ -75,7 +75,9 @@
                                 <div class="col_half">
                                     <label for="register-form-tipoIncidente"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Activo Necesitado:</font></font></label>
                                     <select class="form-control" id="register-form-tipoIncidente" name="Lista">
-                                   @{ var result = ViewBag.Message;
+
+                                   @{   
+                                       var result = ViewBag.Message;
                                        }
 
                                         @foreach (String item in result.Activos)
