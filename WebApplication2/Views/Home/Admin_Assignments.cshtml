@@ -50,7 +50,7 @@
                         @{
 
                             int Foward = 0;
-                            for (int i = 0; i < (result.Activos.Count * 4 / 28); i++)
+                            for (int i = 0; i < (result.Activos.Count * 5 / 40); i++)
                             {
 
                                 <tr>
@@ -64,16 +64,13 @@
                                     <td>@result.Activos[i + (Foward) + 5]</td>
                                     <td>@result.Activos[i + (Foward) + 7]</td>
                                     <td>
-                                        <select class="form-control">
-                                            @*tecnicos llenar en mirror page*@
-
-                                        </select>
+                                        @result.Activos[i + (Foward) + 8]
                                     </td>
                                     <td>@result.Activos[i + (Foward) + 6]</td>
                                 </tr>
 
 
-                                Foward += 7;
+                                Foward += 8;
                             }
 
 

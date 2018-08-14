@@ -230,6 +230,7 @@ namespace WebApplication2.Controllers
 
                 Lista_Incidente.Add(Reader["Prioridad"].ToString());
                 Lista_Incidente.Add(Reader["Estado"].ToString());
+                Lista_Incidente.Add(Reader["Tecnico"].ToString());
             }
             Incidencia_Data Lista = new Incidencia_Data
             {
@@ -309,6 +310,10 @@ namespace WebApplication2.Controllers
             Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Change, conn);//Insert comm
              executer = Insert.ExecuteNonQuery();//execute non query 
 
+            DB_Change = "UPDATE `mydb`.`Incidencia` SET `Tecnico` = '" + Personnel + "' WHERE `Id_Incidencia` = " + Code + ";";
+
+            Insert = new MySql.Data.MySqlClient.MySqlCommand(DB_Change, conn);//Insert comm
+            executer = Insert.ExecuteNonQuery();//execute non query 
 
         }
 

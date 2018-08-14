@@ -33,39 +33,37 @@
                            @{ var result = ViewBag.Message;
 
                             }
-                            @{ 
-                               
-                                    int Foward = 0;
-                                    for(int i = 0; i < (result.Activos.Count*4/28);i++)
-                                    {
+                            @{
 
-                                <tr>
-                                    <td @result.Activos[i+(Foward)+0]>@result.Activos[i+(Foward)+0]</td>
-                                    <td>@result.Activos[i+ (Foward) + 1]</td>
-                                    <td>@result.Activos[i + (Foward) + 2]</td>
+                                int Foward = 0;
+                                for (int i = 0; i < (result.Activos.Count * 5 / 40); i++)
+                                {
 
-
-                                    <td>@result.Activos[i + (Foward) + 3]</td>
-                                    <td>@result.Activos[i + (Foward) + 4]</td>
-                                    <td>@result.Activos[i + (Foward) + 5]</td>
-                                    <td>@result.Activos[i + (Foward) + 7]</td>
-                                    <td>
-                                        <select class="form-control">@*tecnicos llenar en mirror page*@
-                                          
-                                        </select>
-                                    </td>
-                                    <td>@result.Activos[i + (Foward) + 6]</td>
-                                </tr>
+                                    <tr>
+                                        <td @result.Activos[i + (Foward) + 0]>@result.Activos[i + (Foward) + 0]</td>
+                                        <td>@result.Activos[i + (Foward) + 1]</td>
+                                        <td>@result.Activos[i + (Foward) + 2]</td>
 
 
-                                    Foward += 7;
+                                        <td>@result.Activos[i + (Foward) + 3]</td>
+                                        <td>@result.Activos[i + (Foward) + 4]</td>
+                                        <td>@result.Activos[i + (Foward) + 5]</td>
+                                        <td>@result.Activos[i + (Foward) + 7]</td>
+                                        <td>
+                                            @result.Activos[i + (Foward) + 8]
+                                        </td>
+                                        <td>@result.Activos[i + (Foward) + 6]</td>
+                                    </tr>
+
+
+                                    Foward += 8;
                                 }
 
 
 
 
 
-                                }
+                            }
 
 
 

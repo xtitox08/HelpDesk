@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using MySql.Data;
 using WebApplication2.Models;
 using System.Collections;
+using System.Net;
+using System.Net.Mail;
 
 namespace WebApplication2.Controllers
 {
@@ -55,6 +57,11 @@ namespace WebApplication2.Controllers
                 ViewBag.Message = Result;//passing instance to view 
                 return View(); }
           
+        }
+        public ActionResult PasswordRecovery()
+        {
+
+            return View();
         }
 
         public ActionResult RegistroIncidencias()
@@ -287,15 +294,21 @@ namespace WebApplication2.Controllers
             }
             try
             {
+                Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
+                
+                ViewBag.Personnel = Incidentes.ListOfPersonnel(conn);
+                ViewBag.Message = Result;//passing instance to view 
+
                 Incidentes.UpdateAssignment(conn, Code, Personnel);
-                ViewBag.AlertMessage = "Tecnico asignado!";
-                return View();
+                ViewBag.AlertMessage = "Tecnico asignado! (Si no ve los resultados recargue la pagina) ";
+                return View("Admin_Assignments");
             }
-            catch (Exception) { ViewBag.AlertMessage = "Se ha producido un error, verifiquelos campos de entrada e intentelo denuevo"; return View(); }
+            catch (Exception) { ViewBag.AlertMessage = "Se ha producido un error, verifiquelos campos de entrada e intentelo denuevo"; return View("Admin_Assignments"); }
 
          
 
         }
+
 
 
         //-----------------End of post methods--------------
