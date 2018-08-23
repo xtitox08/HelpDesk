@@ -8,11 +8,11 @@ namespace WebApplication2.Controllers
     public class Usuarios
     {
 
-        string SomeValue;
-        public string User_Data(MySql.Data.MySqlClient.MySqlConnection conn)
+        string SomeValue;//Variable for return value 
+        public string User_Data(MySql.Data.MySqlClient.MySqlConnection conn)//Gets User value corresponding to Id_Usuario +1 
         {
 
-            string query = "SELECT `Usuario`.`Id_Usuario`+1 FROM `mydb`.`Usuario`ORDER BY Id_Usuario DESC LIMIT 1;";
+            string query = "SELECT `Usuario`.`Id_Usuario`+1 FROM `mydb`.`Usuario`ORDER BY Id_Usuario DESC LIMIT 1;";//Query variable
             var cmd = new MySql.Data.MySqlClient.MySqlCommand(query, conn);
             var reader = cmd.ExecuteReader();
 
@@ -26,7 +26,7 @@ namespace WebApplication2.Controllers
 
         }
 
-
+        //Insert the User data on the table ' Usuario' and gets the IDs needed to do so receiving User data as parameter and outputting an insert to the table 
         public void User_Data(MySql.Data.MySqlClient.MySqlConnection conn, int ID, String email, String UserName, String pass, String sede, String area, String department, String estado)
         {
 
@@ -52,7 +52,7 @@ namespace WebApplication2.Controllers
                     break;
 
             }
-            switch (sede)
+            switch (sede)//determines the select to use to findout ID of field 'sede' 
             {
                 case "Sede Heredia":
                     SecondQuery = "SELECT `Sede`.`Id_Sede` FROM `mydb`.`Sede` WHERE Ciudad = 'Heredia'; ";
@@ -103,6 +103,7 @@ namespace WebApplication2.Controllers
 
         }
 
+        //Login Verification of user and password corresponding 
         public bool Login_Verification(MySql.Data.MySqlClient.MySqlConnection conn,String UserName,String Password) {
             string query = "SELECT `Usuario`.`Contraseña` FROM `mydb`.`Usuario` where Correo_Electronico = '"+UserName+"';";
             
@@ -111,11 +112,11 @@ namespace WebApplication2.Controllers
 
             reader.Read();
 
-            SomeValue = reader["Contraseña"].ToString();
+            SomeValue = reader["Contraseña"].ToString();//reads password
             // obtiene primer valor
             reader.Close();
             
-            if (!Password.Equals(SomeValue)) {
+            if (!Password.Equals(SomeValue)) {//returns false if user pass doesnt match with database info otherwise returns true 
                 return false;
             }
           

@@ -9,7 +9,7 @@ namespace WebApplication2.Models
     public class Incidencia_Data
     {
 
-        public ArrayList Activos
+        public ArrayList Activos//Getters and setters for the list of the corresponding data to pass to the view
         {
             get;
             set;

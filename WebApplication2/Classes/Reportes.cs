@@ -10,7 +10,7 @@ namespace WebApplication2.Controllers
     public class Reportes
     {
 
-        public void Insert_Report(MySql.Data.MySqlClient.MySqlConnection conn, String Cedula, String Date,  String About) {
+        public void Insert_Report(MySql.Data.MySqlClient.MySqlConnection conn, String Cedula, String Date,  String About) {//Insert the report data on db table 'Reportes' as is 
 
             String DB_Insert;
             //Insert in db 
@@ -22,7 +22,7 @@ namespace WebApplication2.Controllers
 
         }
 
-        public Incidencia_Data ListarReportes(MySql.Data.MySqlClient.MySqlConnection conn)
+        public Incidencia_Data ListarReportes(MySql.Data.MySqlClient.MySqlConnection conn)//Returns the instance containing the list of incidents currently held in DB table ListadoReportes
         {
             Incidentes Incidentes = new Incidentes();
             ArrayList Lista_Incidente = new ArrayList();
@@ -41,7 +41,7 @@ namespace WebApplication2.Controllers
             Reader = Cmd.ExecuteReader();
 
 
-            for (int i = 0; i < Quantity; i++)
+            for (int i = 0; i < Quantity; i++)//loop in each row of table Reportes
             {
 
                       Reader.Read();
@@ -60,7 +60,7 @@ namespace WebApplication2.Controllers
             };
 
             Reader.Close();
-            return Lista;
+            return Lista;//returns list of Reports
 
 
 

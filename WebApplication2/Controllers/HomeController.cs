@@ -14,7 +14,7 @@ namespace WebApplication2.Controllers
     public class HomeController : Controller
     {
 
-        Incidentes Incidentes = new Incidentes();
+        Incidentes Incidentes = new Incidentes();//instances needed 
         Usuarios Usuarios = new Usuarios();
         Mantenimientos Man = new Mantenimientos();
         Reportes Report = new Reportes();
@@ -36,38 +36,34 @@ namespace WebApplication2.Controllers
             return View();
         }
 
-        public ActionResult ListadoIncidencias()
+        public ActionResult ListadoIncidencias()//returns the result of calling the view of Incidents list
         {
 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
                 Connection();//Open connection to aws method
             }
-            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)
+            if (Convert.ToInt32(Incidentes.Id_OfCurrentUser(conn)) == 15)//checks if it is a admin user
             {
                 Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
               ArrayList Personnel =  Incidentes.ListOfPersonnel(conn);
-                ViewBag.Personnel = Personnel;
+                ViewBag.Personnel = Personnel;//returns list of personnel
                 ViewBag.Message = Result;//passing instance to view 
-                int Quantity = Convert.ToInt32(Incidentes.Quantity(conn)  );
+                int Quantity = Convert.ToInt32(Incidentes.Quantity(conn)  );//gets quantity of Incidents
                 ViewBag.Quantity = Quantity;
-                return View("Admin_Assignments");
+                return View("Admin_Assignments");//returns admin view
             }
             else {
-                Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
+                Incidencia_Data Result = Incidentes.ListarIncidencias(conn);//executed when normal user trie to access the incident listing
                 ViewBag.Message = Result;//passing instance to view 
                 int Quantity = Convert.ToInt32(Incidentes.Quantity(conn));
                 ViewBag.Quantity = Quantity;
-                return View(); }
+                return View(); }//returns normal user view
           
         }
-        public ActionResult PasswordRecovery()
-        {
+  
 
-            return View();
-        }
-
-        public ActionResult RegistroIncidencias()
+        public ActionResult RegistroIncidencias()//opens register of incidents
         {
 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
@@ -81,7 +77,7 @@ namespace WebApplication2.Controllers
             return View();
         }
         int ID_OF_User;
-        public ActionResult AgregarUsuario()
+        public ActionResult AgregarUsuario()//add user view
         {
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
@@ -103,7 +99,7 @@ namespace WebApplication2.Controllers
            
         }
         
-        public ActionResult Mantenimientos()
+        public ActionResult Mantenimientos()//Opens maintenance view 
         {
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
@@ -117,7 +113,7 @@ namespace WebApplication2.Controllers
                 return View("Error");
             }
         }
-        public ActionResult Reportes()
+        public ActionResult Reportes()//access reports view 
         {
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
             {
@@ -164,12 +160,12 @@ namespace WebApplication2.Controllers
             return View();
 
         }
-        public ActionResult Categoria()
+        public ActionResult Categoria()//opens category view
         {
 
             return View();
         }
-        public ActionResult Departamento()
+        public ActionResult Departamento()//opens department view
         {
 
             return View();
@@ -225,7 +221,7 @@ namespace WebApplication2.Controllers
 
 
         [HttpPost]
-        public ActionResult Activo(String ID, String Name,String Place,String Quantity)
+        public ActionResult Activo(String ID, String Name,String Place,String Quantity)//Post action of activos
         {
             try
             {
@@ -247,7 +243,7 @@ namespace WebApplication2.Controllers
         }
 
         [HttpPost]
-        public ActionResult Sede(String ID, String Name, String Place)
+        public ActionResult Sede(String ID, String Name, String Place)//post method of HQ 
         {
             try { 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
@@ -267,7 +263,7 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         public ActionResult RegistroIncidencias(String ID, String Cedula, String Date, String About, String Service, String Type, String Lista, String Priority)
-        {
+        {//registry of incidents
 
             try
             {
@@ -278,7 +274,7 @@ namespace WebApplication2.Controllers
                 Incidencia_Data result = Incidentes.Activos(conn);
                 ViewBag.Message = result;//passing instance to view 
 
-                if (!Date.Substring(0, 4).Contains("/") && Date.Substring(5, 5).Length == 5)
+                if (!Date.Substring(0, 4).Contains("/") && Date.Substring(5, 5).Length == 5)//checks if the date format is correct
                 {
 
 
@@ -293,18 +289,18 @@ namespace WebApplication2.Controllers
 
                     return View();
                 }
-                else { ViewBag.AlertMessage = "Error, revisa correctamente los espacios rellenados y recuerda que la fecha es formato yyyy/mm/dd"; return View(); }
+                else { ViewBag.AlertMessage = "Error, revisa correctamente los espacios rellenados y recuerda que la fecha es formato yyyy/mm/dd"; return View(); }//catchs error exception
 
             }
             catch (Exception) {
                 ViewBag.AlertMessage = "Se produjo un error, revisa correctamente los espacios rellenados y recuerda que la fecha es formato yyyy/mm/dd"; return View();
-
+                //return view on exception 
             }
 
 
             }
         [HttpPost]
-        public ActionResult ListadoIncidencias(String Code, String Personnel)
+        public ActionResult ListadoIncidencias(String Code, String Personnel)//post method of incident listing
         {
 
             if (MyConnectionString.Equals(String.Empty))//Open connection if not exist 
@@ -315,7 +311,7 @@ namespace WebApplication2.Controllers
             {
                 Incidencia_Data Result = Incidentes.ListarIncidencias(conn);
                 
-                ViewBag.Personnel = Incidentes.ListOfPersonnel(conn);
+                ViewBag.Personnel = Incidentes.ListOfPersonnel(conn);//passing the personnel list to voew 
                 ViewBag.Message = Result;//passing instance to view 
 
                 Incidentes.UpdateAssignment(conn, Code, Personnel);
@@ -323,7 +319,7 @@ namespace WebApplication2.Controllers
                 return View("Admin_Assignments");
             }
             catch (Exception) { ViewBag.AlertMessage = "Se ha producido un error, verifiquelos campos de entrada e intentelo denuevo"; return View("Admin_Assignments"); }
-
+            //returns corresponding view on error appearance 
          
 
         }

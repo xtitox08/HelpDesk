@@ -8,7 +8,7 @@ namespace WebApplication2.Models
     public class Mantenimientos_Data
     {
 
-        public String ID
+        public String ID//Getters and setters for the list of the corresponding data to pass to the view
         {
             get;
             set;
